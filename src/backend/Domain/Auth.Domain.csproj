@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>Auth.Domain</AssemblyName>
+    <RootNamespace>Auth.Domain</RootNamespace>
   </PropertyGroup>
 
 </Project>
