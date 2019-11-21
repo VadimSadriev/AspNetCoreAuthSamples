@@ -11,6 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Serilog;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
+using System.Reflection;
 
 namespace Auth.Infrastructure
 {
@@ -27,8 +29,10 @@ namespace Auth.Infrastructure
                 options.EnableSensitiveDataLogging();
             });
 
+            // time service
             services.AddTransient<IDateTime, TimeService>();
 
+            // serilog
             services.AddLogging(builder =>
             {
                 builder.ClearProviders();
@@ -37,6 +41,9 @@ namespace Auth.Infrastructure
                     new LoggerConfiguration().ReadFrom.Configuration(configuration.GetSection("Logging"))
                         .CreateLogger());
             });
+
+            // mappings
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
         }
