@@ -44,8 +44,6 @@ namespace Auth.Web.Api
             });
 
             appContext.Database.Migrate();
-
-            //logger.LogInformation("haHA");
         }
     }
 }
