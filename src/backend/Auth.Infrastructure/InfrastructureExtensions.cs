@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace Auth.Infrastructure
 {
@@ -26,6 +28,15 @@ namespace Auth.Infrastructure
             });
 
             services.AddTransient<IDateTime, TimeService>();
+
+            services.AddLogging(builder =>
+            {
+                builder.ClearProviders();
+                builder.AddConfiguration(configuration.GetSection("Logging"));
+                builder.AddSerilog(
+                    new LoggerConfiguration().ReadFrom.Configuration(configuration.GetSection("Logging"))
+                        .CreateLogger());
+            });
 
             return services;
         }
