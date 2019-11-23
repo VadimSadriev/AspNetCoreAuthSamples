@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Infrastructure", "Auth
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Application", "Auth.Application\Auth.Application.csproj", "{C8DABAAB-EE7C-43F4-BE0B-58D22C07B405}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Common", "Auth.Common\Auth.Common.csproj", "{09D77953-D698-4726-9DDD-76630ED2BD59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Common", "Auth.Common\Auth.Common.csproj", "{09D77953-D698-4726-9DDD-76630ED2BD59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

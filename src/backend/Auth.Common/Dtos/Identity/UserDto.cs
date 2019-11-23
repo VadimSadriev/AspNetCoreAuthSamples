@@ -4,6 +4,9 @@
     public class UserDto
     {
         /// <summary> Name of user </summary>
-        public string Name { get; set; }
+        public string UserName { get; set; }
+
+        /// <summary> Email </summary>
+        public string Email { get; set; }
     }
 }

@@ -15,6 +15,7 @@ using AutoMapper;
 using System.Reflection;
 using Auth.Domain;
 using Microsoft.AspNetCore.Identity;
+using Auth.Application;
 
 namespace Auth.Infrastructure
 {
@@ -50,7 +51,13 @@ namespace Auth.Infrastructure
             });
 
             // mappings
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            var mapperAsemblies = new[]
+            {
+                typeof(ApplicationExtensions).Assembly,
+                Assembly.GetExecutingAssembly()
+            };
+
+            services.AddAutoMapper(mapperAsemblies);
 
             return services;
         }

@@ -9,5 +9,8 @@ namespace Auth.Application.Common.Interfaces.Identity
     {
         /// <summary> Creates new user  </summary>
         Task<AppUser> CreateUser(UserCreateDto userDto);
+
+        /// <summary> Returns user by id </summary>
+        Task<AppUser> GetById(string id);
     }
 }
