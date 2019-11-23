@@ -1,5 +1,5 @@
 ﻿using Auth.Common.Time;
-using Auth.Infrastructure.Identity;
+using Auth.Domain;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;

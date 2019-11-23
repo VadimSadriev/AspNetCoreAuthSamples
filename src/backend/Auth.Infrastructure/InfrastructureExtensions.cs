@@ -13,6 +13,8 @@ using Serilog;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using System.Reflection;
+using Auth.Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Auth.Infrastructure
 {
@@ -28,6 +30,11 @@ namespace Auth.Infrastructure
                 options.UseSqlite(configuration["Database:UserStore"]);
                 options.EnableSensitiveDataLogging();
             });
+
+            // identity
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDataContext>()
+                .AddDefaultTokenProviders();
 
             // time service
             services.AddTransient<IDateTime, TimeService>();

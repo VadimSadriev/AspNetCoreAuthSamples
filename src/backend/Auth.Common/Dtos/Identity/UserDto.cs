@@ -1,4 +1,4 @@
-﻿namespace Auth.Infrastructure.Identity.Dtos
+﻿namespace Auth.Common.Dtos.Identity
 {
     /// <summary> Dto for <see cref="AppUser"/> </summary>
     public class UserDto

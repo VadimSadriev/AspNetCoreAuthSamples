@@ -1,4 +1,4 @@
-﻿using Auth.Infrastructure.Identity;
+﻿using Auth.Domain;
 
 namespace Auth.Infrastructure.Auth.Jwt
 {
