@@ -1,3 +1,4 @@
+using Auth.Application;
 using Auth.Infrastructure;
 using Auth.Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
@@ -5,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Auth.Web.Api
 {
@@ -23,7 +23,10 @@ namespace Auth.Web.Api
         {
             services.AddControllers();
 
+            services.AddApplication();
             services.AddInfrastructure(Configuration);
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +38,14 @@ namespace Auth.Web.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+            });
 
             app.UseEndpoints(endpoints =>
             {

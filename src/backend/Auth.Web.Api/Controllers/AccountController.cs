@@ -25,7 +25,7 @@ namespace Auth.Web.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]UserCreateDto userDto)
+        public async Task<IActionResult> Register([FromBody]UserCreateDto userDto)
         {
             var newUser = await _userManager.CreateUser(userDto);
 

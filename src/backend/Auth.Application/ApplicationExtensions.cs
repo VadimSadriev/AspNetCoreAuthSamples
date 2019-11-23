@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Auth.Application
 {
@@ -10,9 +8,6 @@ namespace Auth.Application
         /// <summary> Adds application layer to application </summary>
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            // mappings
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
             return services;
         }
     }
