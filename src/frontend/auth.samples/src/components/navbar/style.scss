@@ -1,0 +1,16 @@
+.nav-menu{
+    justify-content: space-between;
+
+
+     > *{
+        display: flex;
+    }
+}
+
+.nav-brand{
+    text-decoration: none;
+
+    &:visited{
+        color:black;
+    }
+}

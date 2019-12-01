@@ -7,10 +7,11 @@ import {
     Typography
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import './style.scss';
 
 const styles = theme => ({
     title: {
-        flexGrow: 1,
+        // flexGrow: 1,
     }
 });
 
@@ -26,11 +27,13 @@ class Navbar extends React.Component {
         return (
             <div>
                 <AppBar position='fixed' color='default'>
-                    <Toolbar>
-                        <Typography variant="h6" component={Link} to='/' className={this.classes.title}>
+                    <Toolbar className='nav-menu'>
+                        <Typography variant="h6" component={Link} to='/' className='nav-brand'>
                             Auth Samples
                         </Typography>
-                        <Button className={this.classes.button} component={Link} to='/register'>Register</Button>
+                        <div className='links'>
+                            <Button className={this.classes.button} component={Link} to='/register'>Register</Button>
+                        </div>
                     </Toolbar>
                 </AppBar>
             </div>
