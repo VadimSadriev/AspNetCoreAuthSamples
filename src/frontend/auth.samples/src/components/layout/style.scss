@@ -1,7 +1,21 @@
 @import '../../shared/sass/base';
 
-.primary-button{
-    background-color: $primary-color !important;
-    color: #4400B2 !important;
+.MuiButton-root{
     font-family: 'Calistoga', cursive !important;
+}
+
+.MuiInput-root{
+    margin-bottom: 2px !important;
+}
+
+.MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: 2px solid $primary-color !important;
+}
+
+.MuiButton-containedPrimary {
+    background-color: $primary-color !important;
+    
+    &:hover{
+        filter: brightness(80%);
+    }
 }

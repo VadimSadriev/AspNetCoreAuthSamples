@@ -32,7 +32,7 @@ class Navbar extends React.Component {
                             Auth Samples
                         </Typography>
                         <div className='links'>
-                            <Button component={Link} to='/register'>Register</Button>
+                            <Button component={Link} to='/signup'>Sign Up</Button>
                         </div>
                     </Toolbar>
                 </AppBar>
