@@ -1,4 +1,6 @@
 import React from 'react';
+import * as actions from '../../store/actions/signup';
+import { connect } from 'react-redux';
 import {
     Container,
     Card,
@@ -10,7 +12,7 @@ import {
 } from '@material-ui/core';
 import './style.scss';
 
-class Register extends React.Component {
+class Signup extends React.Component {
 
     state = {
         userName: '',
@@ -58,4 +60,18 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+const mapStateToProps = state => {
+    return {
+        apiMessage: state.signup.message
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        signup: (userName, email, password) => {
+            dispatch(actions.signup(userName, email, password));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
