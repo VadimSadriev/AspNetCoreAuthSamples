@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 
 export const signupStart = () => {
     return {
@@ -24,21 +26,44 @@ export const signup = (userName, email, password) => {
     return dispatch => {
         dispatch(signupStart());
 
-        fetch(`${process.env.REACT_APP_API_URL}/signup`, {
-           method: 'POST',
-           body: {
-               userName: userName,
-               email: email,
-               password: password
-           } 
-        }).then(res => {
-            // set token
-            const response = res.json();
+        const instance = axios.create({
+            baseURL: `${process.env.REACT_APP_API_URL}/api`,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        })
 
-            dispatch(signupSuccess());
-        }).catch(res => {
-            const response = res.json();
-            dispatch(signupFail(response.error));
+        instance({
+            method: 'POST',
+            url: `/account/signup`,
+            data: {
+                userName: userName,
+                email: email,
+                password: password
+            }
+        })
+        .then(res => {
+            alert(res.data);
+        })
+        .catch(res => {
+            alert(res.data);
         });
+
+        // instance({
+        //     method: 'POST',
+        //     url: `/account/signup`,
+        //     data: {
+        //         userName: userName,
+        //         email: email,
+        //         password: password
+        //     }
+        // })
+        // .then(res => {
+        //     console.log('success', res);
+        // })
+        // .catch(res => {
+        //     console.log('fail', res);
+        // });
     }
 }

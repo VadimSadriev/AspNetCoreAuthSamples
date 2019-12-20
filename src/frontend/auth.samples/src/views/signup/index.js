@@ -38,6 +38,14 @@ class Signup extends React.Component {
         })
     }
 
+    onSignup = () => {
+        this.props.signup(
+            this.state.userName,
+            this.state.email,
+            this.state.password
+        )
+    }
+
     render() {
 
         return (
@@ -51,7 +59,7 @@ class Signup extends React.Component {
                             <TextField label='Password' type='password' color='secondary' onChange={this.onPasswordChanged}/>
                        </CardContent>
                        <CardActions className='card-footer'>
-                          <Button variant="contained" color="primary" >Sign Up</Button>
+                          <Button variant="contained" color="primary" onClick={this.onSignup}>Sign Up</Button>
                        </CardActions>
                    </Card>
                 </Container>

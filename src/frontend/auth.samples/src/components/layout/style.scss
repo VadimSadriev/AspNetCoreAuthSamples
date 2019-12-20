@@ -1,5 +1,13 @@
 @import '../../shared/sass/base';
 
+html{
+    font-size: $base-font-size;
+}
+
+.MuiContainer-root{
+    font-size: $font-large;
+}
+
 .MuiButton-root{
     font-family: 'Calistoga', cursive !important;
 }

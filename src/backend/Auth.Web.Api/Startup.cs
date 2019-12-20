@@ -43,15 +43,12 @@ namespace Auth.Web.Api
             {
                 builder.AllowAnyOrigin()
                 .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials();
+                .AllowAnyHeader();
             });
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "api/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
 
             appContext.Database.Migrate();

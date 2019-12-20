@@ -16,6 +16,7 @@ using System.Reflection;
 using Auth.Domain;
 using Microsoft.AspNetCore.Identity;
 using Auth.Application;
+using Auth.Application.Common.Interfaces.Identity;
 
 namespace Auth.Infrastructure
 {
@@ -36,6 +37,8 @@ namespace Auth.Infrastructure
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDataContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IUserManager, UserManagerService>();
 
             // time service
             services.AddTransient<IDateTime, TimeService>();
