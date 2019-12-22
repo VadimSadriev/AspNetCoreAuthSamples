@@ -1,0 +1,31 @@
+import React from 'react';
+import { Backdrop, CircularProgress } from '@material-ui/core';
+import { connect } from 'react-redux';
+import './style.scss';
+
+class LayoutBackdrop extends React.Component {
+
+    onClick = () => {
+        this.setState({
+            isOpen: true
+        })
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <Backdrop className="global-backdrop" open={this.props.isOpen}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+            </React.Fragment>
+        )
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        isOpen: state.globalBackdrop.isOpen
+    }
+}
+
+export default connect(mapStateToProps)(LayoutBackdrop);
