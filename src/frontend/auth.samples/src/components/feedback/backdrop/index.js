@@ -5,12 +5,6 @@ import './style.scss';
 
 class LayoutBackdrop extends React.Component {
 
-    onClick = () => {
-        this.setState({
-            isOpen: true
-        })
-    }
-
     render() {
         return (
             <React.Fragment>
