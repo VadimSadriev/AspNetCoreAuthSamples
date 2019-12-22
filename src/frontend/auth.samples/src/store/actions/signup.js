@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import http from '../../shared/utils/http';
 
 export const signupStart = () => {
     return {
@@ -26,17 +25,8 @@ export const signup = (userName, email, password) => {
     return dispatch => {
         dispatch(signupStart());
 
-        const instance = axios.create({
-            baseURL: `${process.env.REACT_APP_API_URL}/api`,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-        })
-
-        instance({
-            method: 'POST',
-            url: `/account/signup`,
+        http.post({
+            url: `/api/account/signup`,
             data: {
                 userName: userName,
                 email: email,
