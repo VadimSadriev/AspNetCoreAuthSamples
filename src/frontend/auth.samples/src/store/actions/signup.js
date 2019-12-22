@@ -1,4 +1,5 @@
 import http from '../../shared/utils/http';
+import { push } from 'connected-react-router';
 
 export const signupStart = () => {
     return {
@@ -33,27 +34,11 @@ export const signup = (userName, email, password) => {
                 password: password
             }
         })
-        .then(res => {
-            alert(res.data);
-        })
-        .catch(res => {
-            alert(res.data);
-        });
-
-        // instance({
-        //     method: 'POST',
-        //     url: `/account/signup`,
-        //     data: {
-        //         userName: userName,
-        //         email: email,
-        //         password: password
-        //     }
-        // })
-        // .then(res => {
-        //     console.log('success', res);
-        // })
-        // .catch(res => {
-        //     console.log('fail', res);
-        // });
+            .then(res => {
+                dispatch(signupSuccess());
+            })
+            .catch(res => {
+                dispatch(signupFail(res.message));
+            });
     }
 }
