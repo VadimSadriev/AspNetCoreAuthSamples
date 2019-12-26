@@ -3,6 +3,7 @@ import Navbar from '../navbar';
 import { Container } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import LayoutBackdrop from '../feedback/backdrop';
+import LayoutSnackbar from '../feedback/snackbar';
 import './style.scss';
 
 const styles = theme => ({
@@ -24,6 +25,7 @@ class Layout extends React.Component {
                 <Navbar />
                 <div className={this.classes.toolbar} />
                 <LayoutBackdrop />
+                <LayoutSnackbar />
                 <Container maxWidth={'xl'}>
                     {this.props.children}
                 </Container>

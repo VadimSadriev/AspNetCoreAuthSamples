@@ -1,11 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Snackbar } from '@material-ui/core';
+import { withSnackbar } from 'notistack';
 
-class LayoutSnackbar extends React.Component{
+// export const withUserSnackbar = Component => {
+//     return props => {
 
-    render(){
-        return(
+//         const { enqueueSnackbar } = useSnackbar();
+
+//         return <Component enqueueSnackbar={enqueueSnackbar} {...props}></Component>;
+//     }
+// }
+
+class LayoutSnackbar extends React.Component {
+
+    state = {
+        isOpen: true,
+        vertical: 'top',
+        horizontal: 'right'
+    }
+
+    handleClick = () => {
+         this.props.enqueueSnackbar('i love snacks');
+    }
+
+    render() {
+        return (
             <React.Fragment>
-                SnackBar
+                <button type='button' onClick={this.handleClick}>Show snackbar</button>
             </React.Fragment>
         )
     }
@@ -17,4 +39,8 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(LayoutSnackbar);
+const layoutWithSnackbar = withSnackbar(LayoutSnackbar);
+
+// const test = withUserSnackbar(LayoutSnackbar)
+
+export default connect(mapStateToProps)(layoutWithSnackbar);

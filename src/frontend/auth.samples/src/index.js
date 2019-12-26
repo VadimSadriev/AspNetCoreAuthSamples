@@ -5,6 +5,7 @@ import App from './App';
 import { createBrowserHistory } from 'history';
 import configureStore from './store';
 import { ConnectedRouter } from 'connected-react-router'
+import { SnackbarProvider } from 'notistack';
 
 const history = createBrowserHistory({ basename: '/' });
 
@@ -15,7 +16,9 @@ const store = configureStore(history, initialState);
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            <SnackbarProvider>
+                <App />
+            </SnackbarProvider>
         </ConnectedRouter>
     </Provider>
     , document.getElementById('root'));
