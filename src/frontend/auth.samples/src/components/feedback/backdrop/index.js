@@ -18,7 +18,7 @@ class LayoutBackdrop extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        isOpen: state.globalBackdrop.isOpen
+        isOpen: state.layoutBackdrop.isOpen
     }
 }
 

@@ -3,15 +3,15 @@ const initialState = {
     isOpen: false
 }
 
-const globalBackdropReducer = (state = initialState, action) => {
+const layoutBackdropReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "GLOBALBACKDROP_OPEN": {
+        case "LAYOUTBACKDROP_OPEN": {
             return {
                 ...state,
                 isOpen: true
             }
         }
-        case "GLOBALBACKDROP_CLOSE": {
+        case "LAYOUTBACKDROP_CLOSE": {
             return {
                 ...state,
                 isOpen: false
@@ -22,4 +22,4 @@ const globalBackdropReducer = (state = initialState, action) => {
     }
 }
 
-export default globalBackdropReducer;
+export default layoutBackdropReducer;

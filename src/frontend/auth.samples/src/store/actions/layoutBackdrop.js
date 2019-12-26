@@ -1,12 +1,12 @@
 
 export const open = () => {
     return {
-        type: "GLOBALBACKDROP_OPEN"
+        type: "LAYOUTBACKDROP_OPEN"
     }
 }
 
 export const close = () => {
     return {
-        type: "GLOBALBACKDROP_CLOSE"
+        type: "LAYOUTBACKDROP_CLOSE"
     }
 }

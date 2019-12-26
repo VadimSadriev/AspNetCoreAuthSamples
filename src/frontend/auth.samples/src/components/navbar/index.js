@@ -25,7 +25,7 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <AppBar position='fixed' color='default'>
                     <Toolbar className='nav-menu'>
                         <Typography variant="h6" component={Link} to='/' className='nav-brand'>
@@ -36,7 +36,7 @@ class Navbar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-            </div>
+            </React.Fragment>
         )
     }
 }

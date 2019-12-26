@@ -1,13 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import signupReducer from './reducers/signup';
-import globalBackdropReducer from './reducers/globalBackdrop';
+import layoutBackdropReducer from './reducers/layoutBackdrop';
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 
 export default function configureStore(history, initialState) {
   const reducers = {
     signup: signupReducer,
-    globalBackdrop: globalBackdropReducer
+    layoutBackdrop: layoutBackdropReducer
   };
 
   const middlewares = [

@@ -15,9 +15,16 @@ import './style.scss';
 class Signup extends React.Component {
 
     state = {
-        userName: '',
+        userName: '123',
         email: '',
-        password: ''
+        password: '',
+        apiMessage: null
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        return {
+            apiMessage: props.apiMessage
+        }
     }
 
     onUserNameChanged = e => {
@@ -51,17 +58,17 @@ class Signup extends React.Component {
         return (
             <div>
                 <Container maxWidth='sm'>
-                   <Card>
-                       <CardHeader className='card-header' title='Register account' />
-                       <CardContent className='card-content'>
-                            <TextField label='User Name' color='secondary' onChange={this.onUserNameChanged}/>
-                            <TextField label='Email' color='secondary' onChange={this.onEmailChanged}/>
-                            <TextField label='Password' type='password' color='secondary' onChange={this.onPasswordChanged}/>
-                       </CardContent>
-                       <CardActions className='card-footer'>
-                          <Button variant="contained" color="primary" onClick={this.onSignup}>Sign Up</Button>
-                       </CardActions>
-                   </Card>
+                    <Card>
+                        <CardHeader className='card-header' title='Register account' />
+                        <CardContent className='card-content'>
+                            <TextField label='User Name' color='secondary' onChange={this.onUserNameChanged} />
+                            <TextField label='Email' color='secondary' onChange={this.onEmailChanged} />
+                            <TextField label='Password' type='password' color='secondary' onChange={this.onPasswordChanged} />
+                        </CardContent>
+                        <CardActions className='card-footer'>
+                            <Button variant="contained" color="primary" onClick={this.onSignup}>Sign Up</Button>
+                        </CardActions>
+                    </Card>
                 </Container>
             </div>
         )

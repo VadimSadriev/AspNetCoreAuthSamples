@@ -1,6 +1,6 @@
 import http from '../../shared/utils/http';
 import { push } from 'connected-react-router';
-import * as globalBackdropActions from './globalBackdrop';
+import * as layoutBackdropActions from './layoutBackdrop';
 
 const signupStart = () => {
     return {
@@ -26,10 +26,11 @@ const signupFail = (message) => {
 export const signup = (userName, email, password) => {
     return dispatch => {
         dispatch(signupStart());
-        dispatch(globalBackdropActions.open());
+        dispatch(layoutBackdropActions.open());
 
-        http.post({
-            url: `/api/account/signup`,
+        http({
+            url: 'api/account/signup',
+            method: 'POST',
             data: {
                 userName: userName,
                 email: email,
@@ -37,12 +38,12 @@ export const signup = (userName, email, password) => {
             }
         })
             .then(res => {
-                dispatch(globalBackdropActions.close())
+                dispatch(layoutBackdropActions.close())
                 dispatch(signupSuccess());
                 dispatch(push('/'));
             })
             .catch(res => {
-                dispatch(globalBackdropActions.close())
+                dispatch(layoutBackdropActions.close())
                 dispatch(signupFail(res.message));
             });
     }
