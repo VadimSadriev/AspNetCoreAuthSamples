@@ -12,6 +12,13 @@ import { withSnackbar } from 'notistack';
 //     }
 // }
 
+const defaultOptions = {
+    anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'right'
+    }
+}
+
 class LayoutSnackbar extends React.Component {
 
     state = {
@@ -21,9 +28,12 @@ class LayoutSnackbar extends React.Component {
     }
 
     handleClick = () => {
-         this.props.enqueueSnackbar('i love snacks');
+        const key = this.props.enqueueSnackbar('i love snacks', {
+            ...defaultOptions,
+        });
     }
-
+    // https://iamhosseindhv.com/notistack/demos#action-for-all-snackbars
+    // https://github.com/iamhosseindhv/notistack#documentation
     render() {
         return (
             <React.Fragment>
