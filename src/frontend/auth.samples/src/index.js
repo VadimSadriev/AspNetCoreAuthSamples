@@ -16,7 +16,7 @@ const store = configureStore(history, initialState);
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <SnackbarProvider>
+            <SnackbarProvider maxSnack={10}>
                 <App />
             </SnackbarProvider>
         </ConnectedRouter>
