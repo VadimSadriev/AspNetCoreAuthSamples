@@ -1,12 +1,26 @@
 import React from 'react';
+import { useSnackbar } from 'notistack';
+import {
+    Card,
+    CardActions,
+    Typography,
+    IconButton
+} from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import './style.scss'
 
-function customSnackbar(props) {
-    const { key } = props;
-    console.log('there we got')
-    console.log(props);
+const CustomSnackbar = React.forwardRef((props, ref) => {
+
     return (
-        <p>321</p>
+        <Card className='custom-snackbar' ref={ref}>
+            <CardActions>
+                <Typography>{props.message}</Typography>
+                <IconButton onClick={props.closeSnackbar}>
+                    <Close fontSize='small' />
+                </IconButton>
+            </CardActions>
+        </Card>
     )
-}
+})
 
-export default customSnackbar;
+export default CustomSnackbar;

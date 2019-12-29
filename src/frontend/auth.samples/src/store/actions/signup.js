@@ -1,6 +1,7 @@
 import http from '../../shared/utils/http';
 import { push } from 'connected-react-router';
 import * as layoutBackdropActions from './layoutBackdrop';
+import * as layoutSnackbarActions from './layoutSnackbar';
 
 const signupStart = () => {
     return {
@@ -44,6 +45,13 @@ export const signup = (userName, email, password) => {
             })
             .catch(res => {
                 dispatch(layoutBackdropActions.close())
+                dispatch(layoutSnackbarActions.enqueueSnackbar({
+                    message: 'Failed fetching data.',
+                    options: {
+                        key: new Date().getTime() + Math.random(),
+                        variant: 'error'
+                    }
+                }))
                 dispatch(signupFail(res.message));
             });
     }

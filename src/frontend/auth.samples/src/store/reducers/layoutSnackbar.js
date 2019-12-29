@@ -1,19 +1,38 @@
 
 const initialState = {
-    messages: []
+    notifications: []
 }
 
 const layoutSnackbarReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "LAYOUTBACKDROP_ADD": {
+        case "ENQUEUE_LAYOUTSNACKBAR": {
             return {
                 ...state,
-                isOpen: true
+                notifications: [
+                    ...state.notifications,
+                    {
+                        key: action.key,
+                        ...action.notification,
+                    },
+                ],
             }
         }
-        case "LAYOUTBACKDROP_REMOVE": {
+        case "CLOSE_LAYOUTSNACKBAR": {
             return {
                 ...state,
+                notifications: state.notifications.map(notification => (
+                    (action.dismissAll || notification.key === action.key)
+                        ? { ...notification, dismissed: true }
+                        : { ...notification }
+                )),
+            }
+        }
+        case "REMOVE_LAYOUTSNACKBAR": {
+            return {
+                ...state,
+                notifications: state.notifications.filter(
+                    notification => notification.key !== action.key,
+                )
             }
         }
         default:

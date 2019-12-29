@@ -1,59 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Snackbar } from '@material-ui/core';
+import { bindActionCreators } from 'redux';
 import { withSnackbar } from 'notistack';
+import { Close } from '@material-ui/icons';
+import { IconButton, Button } from '@material-ui/core';
+import { removeSnackbar } from '../../../store/actions/layoutSnackbar';
 import CustomSnackbar from './components/customSnackbar';
-
-
-import { withStyles } from '@material-ui/core/styles';
-import { useSnackbar } from 'notistack';
-import Card from '@material-ui/core/Card';
-
-const styles = theme => ({
-    card: {
-        maxWidth: 400,
-        minWidth: 344,
-    },
-    typography: {
-        fontWeight: 'bold',
-    },
-    actionRoot: {
-        padding: '8px 8px 8px 16px',
-        backgroundColor: '#fddc6c',
-    },
-    action: {
-        margin: 0,
-    }
-});
-
-
-const SnackMessage = (props) => {
-    const { closeSnackbar } = useSnackbar();
-    const [expanded, setExpanded] = useState(false);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-
-    const handleDismiss = () => {
-        closeSnackbar(props.id);
-    };
-
-    return (
-        <Card >
-            hi
-        </Card>
-    );
-};
-
-// export const withUserSnackbar = Component => {
-//     return props => {
-
-//         const { enqueueSnackbar } = useSnackbar();
-
-//         return <Component enqueueSnackbar={enqueueSnackbar} {...props}></Component>;
-//     }
-// }
 
 // https://iamhosseindhv.com/notistack/demos#action-for-all-snackbars
 // https://github.com/iamhosseindhv/notistack#documentation
@@ -65,63 +17,68 @@ const defaultOptions = {
     }
 }
 
-// class SnackB extends React.Component{
-
-//     constructor(props){
-//         super(props)
-//     }
-//     render(){
-//         return(
-//             <p>{this.props.snackMessage}</p>
-//         )
-//     }
-// }
-
-function SnackB(props) {
-    return (
-        <p>greetings</p>
-    )
-}
-
-
-
 class LayoutSnackbar extends React.Component {
 
-    state = {
-        isOpen: true,
-        vertical: 'top',
-        horizontal: 'right'
+    constructor(props) {
+        super(props)
+        this.displayed = [];
     }
 
-    handleClick = () => {
-        const key = this.props.enqueueSnackbar('nu22ll', {
-            ...defaultOptions,
-            content: (key, message) => {
-                console.log(new SnackB())
-                return <SnackB key={key} snackMessage={message} />
+    storeDisplayed = (key) => {
+        this.displayed = [...this.displayed, key];
+    };
+
+    removeDisplayed = (id) => {
+        this.displayed = this.displayed.filter(key => id !== key)
+    }
+
+    componentDidUpdate() {
+        const { notifications = [] } = this.props;
+
+        notifications.forEach(({ key, message, options = {}, dismissed = false }) => {
+            if (dismissed) {
+                this.props.closeSnackbar(key)
+                return;
             }
-        })
+            // Do nothing if snackbar is already displayed
+            if (this.displayed.includes(key)) return;
+            // Display snackbar using notistack
+            this.props.enqueueSnackbar(message, {
+                key,
+                ...defaultOptions,
+                ...options,
+                action: key => (
+                    <Button onClick={() => this.props.closeSnackbar(key)}>
+                        <Close fontSize='small' />
+                    </Button>),
+                onClose: (event, reason, key) => {
+                    if (options.onClose) {
+                        options.onClose(event, reason, key);
+                    }
+                },
+                onExited: (event, key) => {
+                    this.props.removeSnackbar(key);
+                    this.removeDisplayed(key)
+                }
+            });
+            // Keep track of snackbars that we've displayed
+            this.storeDisplayed(key);
+        });
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <button type='button' onClick={this.handleClick}>Show snackbar</button>
-            </React.Fragment>
-        )
+        return null;
     }
 }
 
 const mapStateToProps = state => {
     return {
-        messages: state.layoutSnackbar.messages
+        notifications: state.layoutSnackbar.notifications
     }
 }
 
+const mapDispatchToProps = dispatch => bindActionCreators({ removeSnackbar }, dispatch);
+
 const layoutWithSnackbar = withSnackbar(LayoutSnackbar);
 
-// const test = withUserSnackbar(LayoutSnackbar)
-
-export default connect(mapStateToProps)(layoutWithSnackbar);
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(layoutWithSnackbar);
