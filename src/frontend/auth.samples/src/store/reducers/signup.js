@@ -23,8 +23,7 @@ const signupReducer = (state=initialState, action) => {
         case "SIGNUP_FAIL": {
             return {
                 ...state,
-                isLoading: false,
-                message: action.payload.message
+                isLoading: false
             };
         }
         default:

@@ -15,12 +15,9 @@ const signupSuccess = () => {
     }
 }
 
-const signupFail = (message) => {
+const signupFail = () => {
     return {
-        type: "SIGNUP_FAIL",
-        payload: {
-            message
-        }
+        type: "SIGNUP_FAIL"
     }
 }
 
@@ -45,14 +42,8 @@ export const signup = (userName, email, password) => {
             })
             .catch(res => {
                 dispatch(layoutBackdropActions.close())
-                dispatch(layoutSnackbarActions.enqueueSnackbar({
-                    message: 'Failed fetching data.',
-                    options: {
-                        key: new Date().getTime() + Math.random(),
-                        variant: 'error'
-                    }
-                }))
-                dispatch(signupFail(res.message));
+                dispatch(layoutSnackbarActions.enqueueSnackbarError(res.message))
+                dispatch(signupFail());
             });
     }
 }

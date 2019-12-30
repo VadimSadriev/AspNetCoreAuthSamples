@@ -5,7 +5,6 @@ import { withSnackbar } from 'notistack';
 import { Close } from '@material-ui/icons';
 import { IconButton, Button } from '@material-ui/core';
 import { removeSnackbar } from '../../../store/actions/layoutSnackbar';
-import CustomSnackbar from './components/customSnackbar';
 
 // https://iamhosseindhv.com/notistack/demos#action-for-all-snackbars
 // https://github.com/iamhosseindhv/notistack#documentation

@@ -24,3 +24,17 @@ export const removeSnackbar = key => {
         key
     }
 }
+
+export const enqueueSnackbarError = message => {
+
+    return {
+        type: 'ENQUEUE_LAYOUTSNACKBAR',
+        notification: {
+            message: message,
+            options: {
+                key: new Date().getTime() + Math.random(),
+                variant: 'error'
+            }
+        }
+    }
+}
