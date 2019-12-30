@@ -36,7 +36,7 @@ namespace Auth.Infrastructure.Identity
             if (result.Succeeded)
                 return await GetById(user.Id);
 
-            throw new ApplicationException(result.Errors.AggregateErrors());
+            throw new AppException(result.Errors.AggregateErrors());
         }
 
         /// <summary> Returns user by id </summary>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withSnackbar } from 'notistack';
 import { Close } from '@material-ui/icons';
-import { IconButton, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { removeSnackbar } from '../../../store/actions/layoutSnackbar';
 
 // https://iamhosseindhv.com/notistack/demos#action-for-all-snackbars
@@ -13,7 +13,8 @@ const defaultOptions = {
     anchorOrigin: {
         vertical: 'top',
         horizontal: 'right'
-    }
+    },
+    persist: true
 }
 
 class LayoutSnackbar extends React.Component {

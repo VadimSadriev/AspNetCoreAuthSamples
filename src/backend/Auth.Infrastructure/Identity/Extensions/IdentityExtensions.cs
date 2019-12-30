@@ -11,8 +11,7 @@ namespace Auth.Infrastructure.Identity.Extensions
         /// <summary> transforms identity errors into string </summary>
         public static string AggregateErrors(this IEnumerable<IdentityError> errors)
         {
-            return errors?.ToList()
-                          .Select(f => f.Description)
+            return errors?.Select(f => f.Description)
                           .Aggregate((a, b) => $"{a}{Environment.NewLine}{b}");
         }
     }

@@ -26,14 +26,31 @@ export const removeSnackbar = key => {
 }
 
 export const enqueueSnackbarError = message => {
-
+    const key = new Date().getTime() + Math.random();
     return {
         type: 'ENQUEUE_LAYOUTSNACKBAR',
         notification: {
             message: message,
+            key,
             options: {
-                key: new Date().getTime() + Math.random(),
+                key,
                 variant: 'error'
+            }
+        }
+    }
+}
+
+export const enqueueSnackbarSuccess = message => {
+
+    const key = new Date().getTime() + Math.random();
+    return {
+        type: 'ENQUEUE_LAYOUTSNACKBAR',
+        notification: {
+            message: message,
+            key: key,
+            options: {
+                key: key,
+                variant: 'success'
             }
         }
     }

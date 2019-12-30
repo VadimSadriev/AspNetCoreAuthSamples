@@ -5,8 +5,9 @@
     <AssemblyName>Auth.Web.Api</AssemblyName>
     <RootNamespace>Auth.Web.Api</RootNamespace>
   </PropertyGroup>
-   
+ 
   <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
@@ -19,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Auth.Application\Auth.Application.csproj" />
     <ProjectReference Include="..\Auth.Infrastructure\Auth.Infrastructure.csproj" />
+    <ProjectReference Include="..\Auth.Web.Infrastructure\Auth.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

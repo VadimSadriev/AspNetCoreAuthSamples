@@ -3,9 +3,11 @@
 namespace Auth.Common.Exceptions
 {
     /// <summary> Business logic exception </summary>
-    public class ApplicationException : Exception
+    public class AppException : Exception
     {
+        public AppException() : base() { }
+
         /// <summary> Business logic exception </summary>
-        public ApplicationException(string message) : base(message) { }
+        public AppException(string message) : base(message) { }
     }
 }

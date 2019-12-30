@@ -38,11 +38,13 @@ export const signup = (userName, email, password) => {
             .then(res => {
                 dispatch(layoutBackdropActions.close())
                 dispatch(signupSuccess());
+                dispatch(layoutSnackbarActions.enqueueSnackbarSuccess('Account has been created successfully'));
                 dispatch(push('/'));
             })
             .catch(res => {
+                console.log(res.response)
                 dispatch(layoutBackdropActions.close())
-                dispatch(layoutSnackbarActions.enqueueSnackbarError(res.message))
+                res.response.data.errors.forEach(error => dispatch(layoutSnackbarActions.enqueueSnackbarError(error.message)))
                 dispatch(signupFail());
             });
     }

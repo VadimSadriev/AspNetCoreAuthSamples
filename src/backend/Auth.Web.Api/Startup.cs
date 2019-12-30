@@ -1,11 +1,14 @@
 using Auth.Application;
 using Auth.Infrastructure;
 using Auth.Infrastructure.Identity;
+using Auth.Web.Infrastructure.MIddlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json;
 
 namespace Auth.Web.Api
 {
@@ -21,12 +24,11 @@ namespace Auth.Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
             services.AddCors();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +40,8 @@ namespace Auth.Web.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ErrorMiddleware>();
 
             app.UseCors(builder =>
             {
