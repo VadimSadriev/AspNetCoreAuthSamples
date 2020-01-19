@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Auth.Web.Api</AssemblyName>
     <RootNamespace>Auth.Web.Api</RootNamespace>
   </PropertyGroup>

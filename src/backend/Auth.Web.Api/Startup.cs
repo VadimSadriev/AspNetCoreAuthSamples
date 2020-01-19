@@ -1,13 +1,16 @@
 using Auth.Application;
+using Auth.Common.Dtos.Identity;
 using Auth.Infrastructure;
 using Auth.Infrastructure.Identity;
 using Auth.Web.Infrastructure.MIddlewares;
+using Auth.Web.Infrastructure.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 using System.Text.Json;
 
 namespace Auth.Web.Api
@@ -27,6 +30,14 @@ namespace Auth.Web.Api
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
+            var assembliesWithMOdels = new[]
+            {
+                Assembly.GetExecutingAssembly(),
+                typeof(UserDto).Assembly
+            };
+
+            services.AddSwagger(assembliesWithMOdels);
+
             services.AddCors();
             services.AddControllers();
         }
@@ -41,6 +52,7 @@ namespace Auth.Web.Api
 
             app.UseAuthorization();
 
+            app.UseSwagger(Configuration);
             app.UseMiddleware<ErrorMiddleware>();
 
             app.UseCors(builder =>

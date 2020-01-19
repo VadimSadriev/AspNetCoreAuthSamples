@@ -1,6 +1,6 @@
 ﻿namespace Auth.Common.Dtos.Identity
 {
-    /// <summary Dto for user creation </summary>
+    /// <summary> Dto for user creation </summary>
     public class UserCreateDto
     {
         /// <summary> Name or login for the user </summary>
