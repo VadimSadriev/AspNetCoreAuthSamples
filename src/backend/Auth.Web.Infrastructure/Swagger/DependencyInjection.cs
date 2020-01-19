@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -28,6 +30,29 @@ namespace Auth.Web.Infrastructure.Swagger
                 {
                     x.IncludeXmlComments(xmlFilePath);
                 }
+
+                // solution for configuring authorization due to breaking changes because of new swagger version
+                // https://stackoverflow.com/questions/58197244/swaggerui-with-netcore-3-0-bearer-token-authorization
+                var openApiSecurityScheme = new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization using the bearer scheme",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme,
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = JwtBearerDefaults.AuthenticationScheme
+                    }
+                };
+
+                var security = new OpenApiSecurityRequirement();
+                security.Add(openApiSecurityScheme, new[] { "Bearer" });
+
+                x.AddSecurityDefinition("Bearer", openApiSecurityScheme);
+
+                x.AddSecurityRequirement(security);
             });
 
             return services;
