@@ -29,11 +29,12 @@ namespace Auth.Web.Api
         {
             services.AddApplication();
             services.AddInfrastructure(Configuration);
+            services.AddJwtAuthentication(Configuration);
 
             var assembliesWithMOdels = new[]
             {
                 Assembly.GetExecutingAssembly(),
-                typeof(UserDto).Assembly
+                typeof(UserResponseDto).Assembly
             };
 
             services.AddSwagger(assembliesWithMOdels);

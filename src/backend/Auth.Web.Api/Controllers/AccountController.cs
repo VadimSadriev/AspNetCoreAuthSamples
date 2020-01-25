@@ -1,7 +1,8 @@
 ﻿using Auth.Application.Common.Interfaces.Identity;
+using Auth.Common.Dtos.Exception;
 using Auth.Common.Dtos.Identity;
 using AutoMapper;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -26,14 +27,28 @@ namespace Auth.Web.Api.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>Creates new user </summary>
         [HttpPost("signup")]
+        [ProducesResponseType(typeof(UserResponseDto), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionDto))]
         public async Task<IActionResult> Signup([FromBody]UserCreateDto userDto)
         {
             var newUser = await _userManager.CreateUser(userDto);
 
-            var result = _mapper.Map<UserDto>(newUser);
+            var result = _mapper.Map<UserResponseDto>(newUser);
 
             return Ok(result);
+        }
+
+        /// <summary> Returns jwt auth token for existing user </summary>
+        [HttpPost("jwt/signin")]
+        [ProducesResponseType(typeof(UserJwtResponseDto), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionDto))]
+        public async Task<IActionResult> Signup([FromBody]UserSigninDto userSigninDto)
+        {
+            var userResponseDto = await _userManager.SigninWithJwt(userSigninDto);
+
+            return Ok(userResponseDto);
         }
     }
 }

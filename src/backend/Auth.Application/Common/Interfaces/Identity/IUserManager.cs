@@ -10,6 +10,9 @@ namespace Auth.Application.Common.Interfaces.Identity
         /// <summary> Creates new user  </summary>
         Task<AppUser> CreateUser(UserCreateDto userDto);
 
+        /// <summary> Checks user existens and return jwt auth token </summary>
+        Task<UserJwtResponseDto> SigninWithJwt(UserSigninDto userSigninDto);
+
         /// <summary> Returns user by id </summary>
         Task<AppUser> GetById(string id);
     }

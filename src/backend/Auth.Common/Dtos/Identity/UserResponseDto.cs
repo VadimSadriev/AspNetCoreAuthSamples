@@ -1,7 +1,7 @@
 ﻿namespace Auth.Common.Dtos.Identity
 {
     /// <summary> Dto for <see cref="AppUser"/> </summary>
-    public class UserDto
+    public class UserResponseDto
     {
         /// <summary> Name of user </summary>
         public string UserName { get; set; }

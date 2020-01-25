@@ -17,6 +17,8 @@ using Auth.Domain;
 using Microsoft.AspNetCore.Identity;
 using Auth.Application;
 using Auth.Application.Common.Interfaces.Identity;
+using Auth.Infrastructure.Identity.Services;
+using Auth.Infrastructure.Identity.Configuration;
 
 namespace Auth.Infrastructure
 {
@@ -33,10 +35,24 @@ namespace Auth.Infrastructure
                 options.EnableSensitiveDataLogging();
             });
 
+            var identityConfigurationSection = configuration.GetSection("IdentityOptions");
+
+            var identityConfiguration = new IdentityConfiguration();
+
+            identityConfigurationSection.Bind(identityConfiguration);
+
             // identity
-            services.AddIdentity<AppUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppDataContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = identityConfiguration.RequireDigit;
+                options.Password.RequiredLength = identityConfiguration.RequiredLength;
+                options.Password.RequiredUniqueChars = identityConfiguration.RequiredUniqueChars;
+                options.Password.RequireLowercase = identityConfiguration.RequireLowercase;
+                options.Password.RequireNonAlphanumeric = identityConfiguration.RequireNonAlphanumeric;
+                options.Password.RequireUppercase = identityConfiguration.RequireUppercase;
+            })
+             .AddEntityFrameworkStores<AppDataContext>()
+             .AddDefaultTokenProviders();
 
             services.AddScoped<IUserManager, UserManagerService>();
 
@@ -82,6 +98,8 @@ namespace Auth.Infrastructure
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JwtOptions>(configuration.GetSection("Authentication:Jwt"));
+
+            services.AddTransient<IJwtAuthService, JwtAuthService>();
 
             services.AddAuthentication(options =>
                 {

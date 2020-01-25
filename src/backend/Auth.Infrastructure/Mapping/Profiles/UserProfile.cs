@@ -10,7 +10,11 @@ namespace Auth.Infrastructure.Mapping.Profiles
         /// <summary> Profile for <see cref="AppUser"/> </summary>
         public UserProfile()
         {
-            CreateMap<AppUser, UserDto>();
+            CreateMap<AppUser, UserResponseDto>();
+
+            CreateMap<AppUser, UserJwtResponseDto>()
+                .ForMember(x => x.Token, a => a.Ignore())
+                .IncludeBase<AppUser, UserResponseDto>();
         }
     }
 }

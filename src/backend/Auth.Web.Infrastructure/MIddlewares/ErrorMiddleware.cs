@@ -25,7 +25,7 @@ namespace Auth.Web.Infrastructure.MIddlewares
             {
                 await _next.Invoke(httpContext);
             }
-            catch (AppException ex)
+            catch (Exception ex)
             {
                 await HandleAsync(httpContext, ex);
             }
