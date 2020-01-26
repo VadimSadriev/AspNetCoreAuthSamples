@@ -5,5 +5,8 @@
     {
         /// <summary> Jwt auth token </summary>
         public string Token { get; set; }
+
+        /// <summary> Token used to refresh jwt </summary>
+        public string RefreshToken { get; set; }
     }
 }

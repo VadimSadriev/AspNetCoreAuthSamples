@@ -50,5 +50,13 @@ namespace Auth.Web.Api.Controllers
 
             return Ok(userResponseDto);
         }
+
+        [HttpPost("jwt/refresh")]
+        public async Task<IActionResult> RefreshJwtToken([FromBody]RefreshJwtTokenDto refreshTokenDto)
+        {
+            var jwtTokenDto = await _userManager.RefreshJwtToken(refreshTokenDto);
+
+            return Ok(jwtTokenDto);
+        }
     }
 }

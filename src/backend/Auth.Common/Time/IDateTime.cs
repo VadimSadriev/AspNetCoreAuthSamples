@@ -6,6 +6,6 @@ namespace Auth.Common.Time
     public interface IDateTime
     {
         /// <summary> Current machine time </summary>
-        DateTime Now { get; }
+        DateTimeOffset Now => DateTimeOffset.Now;
     }
 }

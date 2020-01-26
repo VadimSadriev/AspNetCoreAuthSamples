@@ -101,6 +101,23 @@ namespace Auth.Infrastructure
 
             services.AddTransient<IJwtAuthService, JwtAuthService>();
 
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                // set issuer
+                ValidIssuer = configuration["Authentication:Jwt:Issuer"],
+                // Set audience
+                ValidAudience = configuration["Authentication:Jwt:Audience"],
+                // Set signing key
+                IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(configuration["Authentication:Jwt:SecretKey"]))
+            };
+
+            services.AddSingleton(tokenValidationParameters);
+
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -109,20 +126,7 @@ namespace Auth.Infrastructure
                 })
                 .AddJwtBearer(options =>
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        // set issuer
-                        ValidIssuer = configuration["Authentication:Jwt:Issuer"],
-                        // Set audience
-                        ValidAudience = configuration["Authentication:Jwt:Audience"],
-                        // Set signing key
-                        IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(configuration["Authentication:Jwt:SecretKey"]))
-                    };
+                    options.TokenValidationParameters = tokenValidationParameters;
                 });
 
             return services;

@@ -1,4 +1,7 @@
-﻿using Auth.Domain;
+﻿using Auth.Common.Dtos.Identity;
+using Auth.Domain;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Auth.Infrastructure.Auth.Jwt
 {
@@ -6,6 +9,9 @@ namespace Auth.Infrastructure.Auth.Jwt
     public interface IJwtAuthService
     {
         /// <summary> Returns new jwt authentication token for user</summary>
-        string GetToken(AppUser user);
+        Task<JwtTokenDto> GetToken(AppUser user);
+
+        /// <summary>Returns claims principle from jwt token</summary>
+        public ClaimsPrincipal GetPrincipleFromToken(string token);
     }
 }
