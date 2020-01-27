@@ -51,7 +51,10 @@ namespace Auth.Web.Api.Controllers
             return Ok(userResponseDto);
         }
 
+        /// <summary> Refreshes jwt token with refresh token and returns new combination </summary>
         [HttpPost("jwt/refresh")]
+        [ProducesResponseType(typeof(UserJwtResponseDto), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionDto))]
         public async Task<IActionResult> RefreshJwtToken([FromBody]RefreshJwtTokenDto refreshTokenDto)
         {
             var jwtTokenDto = await _userManager.RefreshJwtToken(refreshTokenDto);

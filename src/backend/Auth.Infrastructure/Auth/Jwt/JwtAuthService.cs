@@ -39,6 +39,7 @@ namespace Auth.Infrastructure.Auth.Jwt
             _jwtOptions = jwtOptions.Value;
             _tokenValidationParameters = tokenValidationParameters;
             _timeService = timeService;
+            _context = context;
         }
 
         /// <summary> Returns new jwt authentication token for user</summary>
