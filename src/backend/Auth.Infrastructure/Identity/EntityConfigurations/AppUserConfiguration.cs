@@ -11,9 +11,6 @@ namespace Auth.Infrastructure.Identity.EntityConfigurations
         /// <summary> Configuration </summary>
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(p => p.Id)
-                .ValueGeneratedOnAdd();
         }
     }
 }

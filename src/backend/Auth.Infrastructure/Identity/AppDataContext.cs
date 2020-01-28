@@ -1,4 +1,5 @@
 ﻿using Auth.Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -6,7 +7,7 @@ using System.Reflection;
 namespace Auth.Infrastructure.Identity
 {
     /// <summary> Main context for application users </summary>
-    public class AppDataContext : IdentityDbContext
+    public class AppDataContext : IdentityDbContext<AppUser, IdentityRole, string>
     {
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 

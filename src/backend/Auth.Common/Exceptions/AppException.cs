@@ -5,6 +5,7 @@ namespace Auth.Common.Exceptions
     /// <summary> Business logic exception </summary>
     public class AppException : Exception
     {
+        /// <summary> Business logic exception </summary>
         public AppException() : base() { }
 
         /// <summary> Business logic exception </summary>

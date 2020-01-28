@@ -67,8 +67,8 @@ namespace Auth.Web.Api
             {
                 endpoints.MapControllers();
             });
-
-            appContext.Database.Migrate();
+            var users = appContext.Users.ToListAsync().GetAwaiter().GetResult();
+           // appContext.Database.Migrate();
         }
     }
 }
