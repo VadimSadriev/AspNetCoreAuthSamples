@@ -5,15 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Identity\Migrations\20191123173617_Init.cs" />
-    <Compile Remove="Identity\Migrations\20191123173617_Init.Designer.cs" />
-    <Compile Remove="Identity\Migrations\20200126180201_AddRefreshToken.cs" />
-    <Compile Remove="Identity\Migrations\20200126180201_AddRefreshToken.Designer.cs" />
-    <Compile Remove="Migrations\20200128205800_init.cs" />
-    <Compile Remove="Migrations\20200128205800_init.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />

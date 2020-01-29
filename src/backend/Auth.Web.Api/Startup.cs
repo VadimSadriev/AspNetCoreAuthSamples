@@ -44,7 +44,7 @@ namespace Auth.Web.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDataContext appContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseHsts();
             app.UseHttpsRedirection();
@@ -67,8 +67,6 @@ namespace Auth.Web.Api
             {
                 endpoints.MapControllers();
             });
-            var users = appContext.Users.ToListAsync().GetAwaiter().GetResult();
-           // appContext.Database.Migrate();
         }
     }
 }

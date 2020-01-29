@@ -19,7 +19,8 @@ namespace Auth.IntergrationTests.Base
                 {
                     builder.ConfigureServices(services =>
                     {
-                        services.RemoveAll(typeof(AppDataContext));
+                        // https://github.com/dotnet/extensions/issues/2800
+                        services.RemoveAll<DbContextOptions<AppDataContext>>();
                         services.AddDbContext<AppDataContext>(options =>
                         {
                             options.UseInMemoryDatabase("TestDb");
@@ -27,11 +28,6 @@ namespace Auth.IntergrationTests.Base
                     });
                 });
 
-            using var scope = appFactory.Services.CreateScope();
-
-            var context = scope.ServiceProvider.GetService<AppDataContext>();
-           // context.Database.EnsureDeleted();
-            //context.Database.EnsureCreated();
             TestClient = appFactory.CreateClient();
         }
     }

@@ -19,6 +19,7 @@ using Auth.Application;
 using Auth.Application.Common.Interfaces.Identity;
 using Auth.Infrastructure.Identity.Services;
 using Auth.Infrastructure.Identity.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace Auth.Infrastructure
 {

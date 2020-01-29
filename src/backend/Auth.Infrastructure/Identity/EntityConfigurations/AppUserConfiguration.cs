@@ -1,7 +1,6 @@
 ﻿using Auth.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace Auth.Infrastructure.Identity.EntityConfigurations
 {
@@ -11,6 +10,9 @@ namespace Auth.Infrastructure.Identity.EntityConfigurations
         /// <summary> Configuration </summary>
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id)
+                .ValueGeneratedOnAdd();
         }
     }
 }
