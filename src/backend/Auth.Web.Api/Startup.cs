@@ -4,6 +4,7 @@ using Auth.Infrastructure;
 using Auth.Web.Infrastructure.Contracts.AccountContracts;
 using Auth.Web.Infrastructure.MIddlewares;
 using Auth.Web.Infrastructure.Swagger;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -38,7 +39,12 @@ namespace Auth.Web.Api
             services.AddSwagger(assembliesWithMOdels);
 
             services.AddCors();
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(config =>
+                {
+                    config.RegisterValidatorsFromAssemblyContaining<UserResponseContract>();
+                    config.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
