@@ -20,6 +20,7 @@ using Auth.Application.Common.Interfaces.Identity;
 using Auth.Infrastructure.Identity.Services;
 using Auth.Infrastructure.Identity.Configuration;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 
 namespace Auth.Infrastructure
 {
@@ -27,7 +28,8 @@ namespace Auth.Infrastructure
     public static class InfrastructureExtensions
     {
         /// <summary> Adds infrastructure layer to application </summary>
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration,
+            params Assembly[] assembliesWithMappingProfiles)
         {
             // register user database
             services.AddDbContext<AppDataContext>(options =>
@@ -71,11 +73,14 @@ namespace Auth.Infrastructure
             });
 
             // mappings
-            var mapperAsemblies = new[]
+            var mapperAsemblies = new List<Assembly>
             {
                 typeof(ApplicationExtensions).Assembly,
-                Assembly.GetExecutingAssembly()
+                Assembly.GetExecutingAssembly(),
             };
+
+            // this is not good need another aproach to load mapping profiles from different projects
+            mapperAsemblies.AddRange(assembliesWithMappingProfiles);
 
             services.AddAutoMapper(mapperAsemblies);
 

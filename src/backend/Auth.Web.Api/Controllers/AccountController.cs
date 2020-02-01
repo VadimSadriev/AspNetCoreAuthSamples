@@ -1,6 +1,7 @@
 ﻿using Auth.Application.Common.Interfaces.Identity;
-using Auth.Common.Dtos.Exception;
 using Auth.Common.Dtos.Identity;
+using Auth.Web.Infrastructure.Contracts.AccountContracts;
+using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,37 +30,47 @@ namespace Auth.Web.Api.Controllers
 
         /// <summary>Creates new user </summary>
         [HttpPost("signup")]
-        [ProducesResponseType(typeof(UserResponseDto), StatusCodes.Status200OK)]
-        [ProducesErrorResponseType(typeof(ExceptionDto))]
-        public async Task<IActionResult> Signup([FromBody]UserCreateDto userDto)
+        [ProducesResponseType(typeof(UserResponseContract), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionContract))]
+        public async Task<IActionResult> Signup([FromBody]UserCreateContract userContract)
         {
-            var newUser = await _userManager.CreateUser(userDto);
+            var userDto = _mapper.Map<UserCreateDto>(userContract);
 
-            var result = _mapper.Map<UserResponseDto>(newUser);
+            var newUserDto = await _userManager.CreateUser(userDto);
+
+            var result = _mapper.Map<UserResponseContract>(newUserDto);
 
             return Ok(result);
         }
 
         /// <summary> Returns jwt auth token for existing user </summary>
         [HttpPost("jwt/signin")]
-        [ProducesResponseType(typeof(UserJwtResponseDto), StatusCodes.Status200OK)]
-        [ProducesErrorResponseType(typeof(ExceptionDto))]
-        public async Task<IActionResult> Signup([FromBody]UserSigninDto userSigninDto)
+        [ProducesResponseType(typeof(UserJwtResponseContract), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionContract))]
+        public async Task<IActionResult> Signup([FromBody]UserSigninContract userSigninContract)
         {
+            var userSigninDto = _mapper.Map<UserSigninDto>(userSigninContract);
+
             var userResponseDto = await _userManager.SigninWithJwt(userSigninDto);
 
-            return Ok(userResponseDto);
+            var responseContract = _mapper.Map<UserJwtResponseContract>(userResponseDto);
+
+            return Ok(responseContract);
         }
 
         /// <summary> Refreshes jwt token with refresh token and returns new combination </summary>
         [HttpPost("jwt/refresh")]
-        [ProducesResponseType(typeof(UserJwtResponseDto), StatusCodes.Status200OK)]
-        [ProducesErrorResponseType(typeof(ExceptionDto))]
-        public async Task<IActionResult> RefreshJwtToken([FromBody]RefreshJwtTokenDto refreshTokenDto)
+        [ProducesResponseType(typeof(UserJwtResponseContract), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionContract))]
+        public async Task<IActionResult> RefreshJwtToken([FromBody]RefreshJwtTokenContract refreshTokenContract)
         {
+            var refreshTokenDto = _mapper.Map<RefreshJwtTokenDto>(refreshTokenContract);
+
             var jwtTokenDto = await _userManager.RefreshJwtToken(refreshTokenDto);
 
-            return Ok(jwtTokenDto);
+            var responseContract = _mapper.Map<UserJwtResponseContract>(jwtTokenDto);
+
+            return Ok(responseContract);
         }
     }
 }

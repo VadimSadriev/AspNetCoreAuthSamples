@@ -14,6 +14,7 @@ namespace Auth.Infrastructure.Mapping.Profiles
 
             CreateMap<AppUser, UserJwtResponseDto>()
                 .ForMember(x => x.Token, a => a.Ignore())
+                .ForMember(x => x.RefreshToken, a => a.Ignore())
                 .IncludeBase<AppUser, UserResponseDto>();
         }
     }

@@ -1,9 +1,7 @@
 ﻿using Auth.Application;
 using Auth.Infrastructure;
+using Auth.Web.Infrastructure.Contracts.AccountContracts;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Auth.UnitTests
@@ -20,7 +18,8 @@ namespace Auth.UnitTests
             var assemblies = new[]
             {
                 typeof(InfrastructureExtensions).Assembly,
-                typeof(ApplicationExtensions).Assembly
+                typeof(ApplicationExtensions).Assembly,
+                typeof(UserResponseContract).Assembly
             };
 
             var mapperConfiguration = new MapperConfiguration(x => x.AddMaps(assemblies));

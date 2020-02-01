@@ -1,5 +1,5 @@
-﻿using Auth.Common.Dtos.Exception;
-using Auth.Common.Exceptions;
+﻿using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Text.Json;
@@ -13,10 +13,12 @@ namespace Auth.Web.Infrastructure.MIddlewares
     public class ErrorMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly IMapper _mapper;
 
-        public ErrorMiddleware(RequestDelegate next)
+        public ErrorMiddleware(RequestDelegate next, IMapper mapper)
         {
             _next = next;
+            _mapper = mapper;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -36,12 +38,10 @@ namespace Auth.Web.Infrastructure.MIddlewares
             httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             httpContext.Response.ContentType = "application/json";
 
-            var exceptionDto = new ExceptionDto
-            {
-                Errors = new[] { new ExceptionErrorDto { Message = exception.Message } }
-            };
+            var exceptionContract = _mapper.Map<ExceptionContract>(exception);
 
-            var result = JsonSerializer.Serialize<ExceptionDto>(exceptionDto, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+            var result = JsonSerializer.Serialize
+                (exceptionContract, new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
             await httpContext.Response.WriteAsync(result);
         }
