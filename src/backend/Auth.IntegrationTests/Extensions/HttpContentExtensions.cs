@@ -1,8 +1,8 @@
-﻿using Auth.Common.Extensions;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Auth.Common.Extensions;
 
-namespace Auth.IntergrationTests.Extensions
+namespace Auth.IntegrationTests.Extensions
 {
     /// <summary>
     /// Extensions for <see cref="HttpContent"/>

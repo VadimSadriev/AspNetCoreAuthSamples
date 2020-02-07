@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.UnitTests", "Auth.Unit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Web.Infrastructure", "Auth.Web.Infrastructure\Auth.Web.Infrastructure.csproj", "{5C6176B6-83C6-4D3D-82CD-1F6DAF1D81D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.IntergrationTests", "Auth.IntergrationTests\Auth.IntergrationTests.csproj", "{49EDF292-C2AB-4E88-AAAA-D27E5F94E566}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.IntegrationTests", "Auth.IntegrationTests\Auth.IntegrationTests.csproj", "{49EDF292-C2AB-4E88-AAAA-D27E5F94E566}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
