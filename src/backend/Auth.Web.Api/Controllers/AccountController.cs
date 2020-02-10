@@ -1,12 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Auth.Application.Common.Interfaces.Identity;
 using Auth.Common.Dtos.Identity;
 using Auth.Web.Infrastructure.Contracts.AccountContracts;
 using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
 using AutoMapper;
-using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
