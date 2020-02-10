@@ -1,13 +1,14 @@
-﻿using Auth.Application.Common.Interfaces.Identity;
+﻿using System;
+using System.Threading.Tasks;
+using Auth.Application.Common.Interfaces.Identity;
 using Auth.Common.Dtos.Identity;
 using Auth.Web.Infrastructure.Contracts.AccountContracts;
 using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
-using Auth.Web.Infrastructure.ContractValidators.AccountValidators;
 using AutoMapper;
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace Auth.Web.Api.Controllers
 {
