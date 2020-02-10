@@ -1,10 +1,9 @@
 ﻿using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using FluentValidation;
 using FluentValidation.Results;
+using System;
+using System.Collections.Generic;
 
 namespace Auth.Web.Infrastructure.MappingProfiles
 {
@@ -37,7 +36,7 @@ namespace Auth.Web.Infrastructure.MappingProfiles
 
             while (srcExc != null)
             {
-                yield return new ExceptionErrorContract {Type = srcExc.GetType().Name, Message = srcExc.Message};
+                yield return new ExceptionErrorContract { Type = srcExc.GetType().Name, Message = srcExc.Message };
                 srcExc = srcExc.InnerException;
             }
         }
