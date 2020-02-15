@@ -16,4 +16,4 @@ jobs:
     - name: Build with dotnet
       run: dotnet build ./src/backend --configuration Release
     - name: Run Tests
-      run: dotnet test ./src/backend --configuration -Release
+      run: dotnet test ./src/backend --configuration Release
