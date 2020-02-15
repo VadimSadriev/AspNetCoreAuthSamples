@@ -3,7 +3,7 @@ name: .NET Core
 on: 
   push:
     paths: 
-      - 'src/backend
+      - 'src/backend'
 
 jobs:
   build:
