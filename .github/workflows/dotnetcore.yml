@@ -1,9 +1,6 @@
 name: .NET Core
 
-on: 
-  push:
-    paths: 
-      - 'src/backend/**'
+on: [push]
 
 jobs:
   build:
