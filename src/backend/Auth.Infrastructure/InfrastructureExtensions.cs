@@ -1,26 +1,21 @@
-﻿using Auth.Common.Time;
+﻿using Auth.Application.Common.Interfaces.Identity;
+using Auth.Common.Time;
+using Auth.Domain;
 using Auth.Infrastructure.Auth.Jwt;
 using Auth.Infrastructure.Identity;
+using Auth.Infrastructure.Identity.Configuration;
+using Auth.Infrastructure.Identity.Services;
 using Auth.Infrastructure.Time;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Serilog;
 using Microsoft.Extensions.Logging;
-using AutoMapper;
-using System.Reflection;
-using Auth.Domain;
-using Microsoft.AspNetCore.Identity;
-using Auth.Application;
-using Auth.Application.Common.Interfaces.Identity;
-using Auth.Infrastructure.Identity.Services;
-using Auth.Infrastructure.Identity.Configuration;
-using Microsoft.Extensions.Options;
-using System.Collections.Generic;
+using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using System.Text;
 
 namespace Auth.Infrastructure
 {
@@ -28,8 +23,7 @@ namespace Auth.Infrastructure
     public static class InfrastructureExtensions
     {
         /// <summary> Adds infrastructure layer to application </summary>
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration,
-            params Assembly[] assembliesWithMappingProfiles)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             // register user database
             services.AddDbContext<AppDataContext>(options =>
@@ -71,18 +65,6 @@ namespace Auth.Infrastructure
                     new LoggerConfiguration().ReadFrom.Configuration(configuration.GetSection("Logging"))
                         .CreateLogger());
             });
-
-            // mappings
-            var mapperAsemblies = new List<Assembly>
-            {
-                typeof(ApplicationExtensions).Assembly,
-                Assembly.GetExecutingAssembly(),
-            };
-
-            // this is not good need another aproach to load mapping profiles from different projects
-            mapperAsemblies.AddRange(assembliesWithMappingProfiles);
-
-            services.AddAutoMapper(mapperAsemblies);
 
             return services;
         }

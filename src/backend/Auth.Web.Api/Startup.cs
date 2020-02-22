@@ -1,7 +1,9 @@
 using Auth.Application;
 using Auth.Application.Dtos.Identity;
 using Auth.Infrastructure;
+using Auth.Infrastructure.Mapping.Profiles;
 using Auth.Web.Contracts.AccountContracts;
+using Auth.Web.Infrastructure.MappingProfiles;
 using Auth.Web.Infrastructure.MIddlewares;
 using Auth.Web.Infrastructure.Swagger;
 using FluentValidation.AspNetCore;
@@ -26,7 +28,7 @@ namespace Auth.Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplication();
-            services.AddInfrastructure(Configuration, typeof(UserResponseContract).Assembly);
+            services.AddInfrastructure(Configuration);
             services.AddJwtAuthentication(Configuration);
 
             var assembliesWithMOdels = new[]
@@ -45,6 +47,14 @@ namespace Auth.Web.Api
                     config.RegisterValidatorsFromAssemblyContaining<UserResponseContract>();
                     config.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                 });
+
+            var assembliesWithProfiles = new[]
+            {
+                typeof(AccountProfiles).Assembly,
+                typeof(UserProfile).Assembly
+            };
+
+            services.AddMapping(assembliesWithProfiles);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

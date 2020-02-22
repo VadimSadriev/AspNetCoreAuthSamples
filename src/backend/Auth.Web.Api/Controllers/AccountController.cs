@@ -2,9 +2,7 @@
 using Auth.Application.Dtos.Identity;
 using Auth.Web.Contracts.AccountContracts;
 using Auth.Web.Contracts.ExceptionContracts;
-using Auth.Web.Infrastructure.ContractValidators.AccountValidators;
 using AutoMapper;
-using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
