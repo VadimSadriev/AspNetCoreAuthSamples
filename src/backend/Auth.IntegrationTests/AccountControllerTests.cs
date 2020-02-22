@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Auth.Common.Dtos.Identity;
+using Auth.Application.Dtos.Identity;
 using Auth.IntegrationTests.Base;
 using Auth.IntegrationTests.Extensions;
 using FluentAssertions;

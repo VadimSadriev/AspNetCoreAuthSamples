@@ -1,4 +1,4 @@
-﻿namespace Auth.Common.Dtos.Identity
+﻿namespace Auth.Application.Dtos.Identity
 {
     /// <summary>
     /// Dto for user signin

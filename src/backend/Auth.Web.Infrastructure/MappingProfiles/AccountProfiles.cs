@@ -1,4 +1,4 @@
-﻿using Auth.Common.Dtos.Identity;
+﻿using Auth.Application.Dtos.Identity;
 using Auth.Domain;
 using Auth.Web.Contracts.AccountContracts;
 using AutoMapper;

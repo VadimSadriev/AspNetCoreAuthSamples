@@ -1,5 +1,5 @@
 ﻿using Auth.Application.Common.Interfaces.Identity;
-using Auth.Common.Dtos.Identity;
+using Auth.Application.Dtos.Identity;
 using Auth.Web.Contracts.AccountContracts;
 using Auth.Web.Contracts.ExceptionContracts;
 using Auth.Web.Infrastructure.ContractValidators.AccountValidators;

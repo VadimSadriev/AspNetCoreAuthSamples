@@ -1,5 +1,5 @@
 ﻿using Auth.Application.Common.Interfaces.Identity;
-using Auth.Common.Dtos.Identity;
+using Auth.Application.Dtos.Identity;
 using Auth.Common.Exceptions;
 using Auth.Common.Extensions;
 using Auth.Domain;
@@ -9,7 +9,6 @@ using Auth.Infrastructure.Identity.Extensions;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -27,9 +26,6 @@ namespace Auth.Infrastructure.Identity.Services
         /// <summary> provides token generation for user </summary>
         private readonly IJwtAuthService _jwtAuthService;
 
-        /// <summary> options for token generation </summary>
-        private readonly JwtOptions _jwtOptions;
-
         /// <summary> Mapper </summary>
         private readonly IMapper _mapper;
 
@@ -39,14 +35,12 @@ namespace Auth.Infrastructure.Identity.Services
         public UserManagerService(
             UserManager<AppUser> userManager,
             IJwtAuthService jwtAuthService,
-            IOptions<JwtOptions> jwtOptions,
             IMapper mapper,
             AppDataContext context
             )
         {
             _context = context;
             _userManager = userManager;
-            _jwtOptions = jwtOptions.Value;
             _mapper = mapper;
             _jwtAuthService = jwtAuthService;
         }

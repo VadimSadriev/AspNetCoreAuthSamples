@@ -1,4 +1,4 @@
-﻿namespace Auth.Common.Dtos.Identity
+﻿namespace Auth.Application.Dtos.Identity
 {
     /// <summary> Dto used for refreshing jwt token </summary>
     public class RefreshJwtTokenDto

@@ -1,4 +1,4 @@
-﻿using Auth.Common.Dtos.Identity;
+﻿using Auth.Application.Dtos.Identity;
 using Auth.Common.Exceptions;
 using Auth.Common.Time;
 using Auth.Domain;

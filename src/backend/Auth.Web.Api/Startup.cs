@@ -1,5 +1,5 @@
 using Auth.Application;
-using Auth.Common.Dtos.Identity;
+using Auth.Application.Dtos.Identity;
 using Auth.Infrastructure;
 using Auth.Web.Contracts.AccountContracts;
 using Auth.Web.Infrastructure.MIddlewares;

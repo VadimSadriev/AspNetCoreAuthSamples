@@ -1,4 +1,4 @@
-﻿using Auth.Common.Dtos.Identity;
+﻿using Auth.Application.Dtos.Identity;
 using Auth.Domain;
 using System.Security.Claims;
 using System.Threading.Tasks;
