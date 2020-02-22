@@ -32,12 +32,17 @@ namespace Auth.IntegrationTests.Base
             TestClient = appFactory.CreateClient();
         }
 
+        protected async Task AuthenticateAsync()
+        {
+            
+        }
+
         public async ValueTask DisposeAsync()
         {
             using var serviceScope = _serviceProvider.CreateScope();
 
             var context = serviceScope.ServiceProvider.GetService<AppDataContext>();
-            
+
             await context.Database.EnsureDeletedAsync();
         }
     }

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Auth.Web.Infrastructure.Filters;
 
 namespace Auth.Web.Api
 {
@@ -41,7 +42,10 @@ namespace Auth.Web.Api
             services.AddSwagger(assembliesWithMOdels);
 
             services.AddCors();
-            services.AddControllers()
+            services.AddControllers(options =>
+                {
+                    options.Filters.Add<ValidationFilter>();
+                })
                 .AddFluentValidation(config =>
                 {
                     config.RegisterValidatorsFromAssemblyContaining<UserResponseContract>();

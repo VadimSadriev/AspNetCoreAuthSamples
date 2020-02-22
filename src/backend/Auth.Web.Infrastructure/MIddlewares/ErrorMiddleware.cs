@@ -1,9 +1,10 @@
-﻿using Auth.Web.Contracts.ExceptionContracts;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
+using Auth.Web.Contracts.ExceptionContracts;
+using AutoMapper;
+using Microsoft.AspNetCore.Http;
 
 namespace Auth.Web.Infrastructure.MIddlewares
 {

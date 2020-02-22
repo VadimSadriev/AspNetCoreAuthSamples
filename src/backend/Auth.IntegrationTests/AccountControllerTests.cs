@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Auth.Application.Dtos.Identity;
 using Auth.IntegrationTests.Base;
 using Auth.IntegrationTests.Extensions;
+using Auth.Web.Infrastructure.Contracts.AccountContracts;
 using FluentAssertions;
 using Xunit;
 
@@ -18,23 +19,41 @@ namespace Auth.IntegrationTests
         public async Task Signup_Success()
         {
             // arrange
-            var userCreateDto = new UserCreateDto
+            var userCreateContract = new UserCreateContract
             {
                 Email = "Test@gmail.com",
                 UserName = "TestUser",
                 Password = "Password12345"
             };
             // act
-            var response = await TestClient.PostAsJsonAsync(_signupUrl, userCreateDto);
-            
+            var response = await TestClient.PostAsJsonAsync(_signupUrl, userCreateContract);
+
             // assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             response.Content.Should().NotBeNull();
 
-            var responseContent = await response.Content.ReadAsAsync<UserResponseDto>();
+            var responseContent = await response.Content.ReadAsAsync<UserResponseContract>();
 
-            responseContent.Email.Should().Be(userCreateDto.Email);
-            responseContent.UserName.Should().Be(userCreateDto.UserName);
+            responseContent.Email.Should().Be(userCreateContract.Email);
+            responseContent.UserName.Should().Be(userCreateContract.UserName);
+        }
+
+        [Fact]
+        public async Task Signip_Fail()
+        {
+            // arrange
+            var userCreateDContract = new UserCreateContract
+            {
+                Email = "",
+                UserName = null,
+                Password = ""
+            };
+
+            // act
+            var response = await TestClient.PostAsJsonAsync(_signupUrl, userCreateDContract);
+
+            // assert
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }
