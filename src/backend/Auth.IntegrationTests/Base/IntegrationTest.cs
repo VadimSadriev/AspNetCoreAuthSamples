@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Auth.Infrastructure.Identity;
+using Auth.Infrastructure.Identity.Data;
 using Auth.Web.Api;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;

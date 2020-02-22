@@ -4,6 +4,7 @@ using Auth.Application.Exceptions;
 using Auth.Common.Extensions;
 using Auth.Domain;
 using Auth.Infrastructure.Auth.Jwt;
+using Auth.Infrastructure.Identity.Data;
 using Auth.Infrastructure.Identity.Exceptions;
 using Auth.Infrastructure.Identity.Extensions;
 using AutoMapper;

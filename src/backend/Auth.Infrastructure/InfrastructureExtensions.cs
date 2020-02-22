@@ -2,8 +2,8 @@
 using Auth.Common.Time;
 using Auth.Domain;
 using Auth.Infrastructure.Auth.Jwt;
-using Auth.Infrastructure.Identity;
 using Auth.Infrastructure.Identity.Configuration;
+using Auth.Infrastructure.Identity.Data;
 using Auth.Infrastructure.Identity.Services;
 using Auth.Infrastructure.Time;
 using Microsoft.AspNetCore.Authentication.Cookies;

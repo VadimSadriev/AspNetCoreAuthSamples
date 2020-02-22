@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace Auth.Infrastructure.Identity
+namespace Auth.Infrastructure.Identity.Data
 {
     /// <summary> Main context for application users </summary>
     public class AppDataContext : IdentityDbContext<AppUser, IdentityRole, string>

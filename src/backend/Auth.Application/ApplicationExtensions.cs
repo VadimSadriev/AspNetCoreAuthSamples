@@ -17,7 +17,6 @@ namespace Auth.Application
         public static IServiceCollection AddMapping(this IServiceCollection services, params Assembly[] assemblies)
         {
             services.AddAutoMapper(assemblies);
-
             return services;
         }
     }

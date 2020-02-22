@@ -2,7 +2,7 @@
 using Auth.Application.Exceptions;
 using Auth.Common.Time;
 using Auth.Domain;
-using Auth.Infrastructure.Identity;
+using Auth.Infrastructure.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

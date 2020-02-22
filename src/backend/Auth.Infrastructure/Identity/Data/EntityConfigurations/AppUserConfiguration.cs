@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Auth.Infrastructure.Identity.EntityConfigurations
+namespace Auth.Infrastructure.Identity.Data.EntityConfigurations
 {
     /// <summary> Configuration for <see cref="AppUser"/> </summary>
     public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
