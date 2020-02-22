@@ -1,6 +1,6 @@
 ﻿using Auth.Application.Common.Interfaces.Identity;
 using Auth.Application.Dtos.Identity;
-using Auth.Common.Exceptions;
+using Auth.Application.Exceptions;
 using Auth.Common.Extensions;
 using Auth.Domain;
 using Auth.Infrastructure.Auth.Jwt;

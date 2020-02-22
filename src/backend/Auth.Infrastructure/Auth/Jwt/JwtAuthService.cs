@@ -1,5 +1,5 @@
 ﻿using Auth.Application.Dtos.Identity;
-using Auth.Common.Exceptions;
+using Auth.Application.Exceptions;
 using Auth.Common.Time;
 using Auth.Domain;
 using Auth.Infrastructure.Identity;

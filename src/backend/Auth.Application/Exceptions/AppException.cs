@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Auth.Common.Exceptions
+namespace Auth.Application.Exceptions
 {
     /// <summary> Business logic exception </summary>
     public class AppException : Exception

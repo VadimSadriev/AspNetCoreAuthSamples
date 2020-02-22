@@ -1,14 +1,11 @@
-﻿using System.Threading.Tasks;
-using Auth.Application.Common.Interfaces.Identity;
-using Auth.Common.Dtos.Identity;
-using Auth.Web.Infrastructure.Contracts.AccountContracts;
-using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
+﻿using Auth.Application.Common.Interfaces.Identity;
 using Auth.Application.Dtos.Identity;
 using Auth.Web.Contracts.AccountContracts;
 using Auth.Web.Contracts.ExceptionContracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Auth.Web.Api.Controllers
 {

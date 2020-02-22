@@ -1,4 +1,4 @@
-﻿using Auth.Common.Exceptions;
+﻿using Auth.Application.Exceptions;
 
 namespace Auth.Infrastructure.Identity.Exceptions
 {
