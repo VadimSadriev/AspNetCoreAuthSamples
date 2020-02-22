@@ -1,4 +1,4 @@
-﻿namespace Auth.Web.Infrastructure.Contracts.AccountContracts
+﻿namespace Auth.Web.Contracts.AccountContracts
 {
     /// <summary> Contract used for refreshing jwt token </summary>
     public class RefreshJwtTokenContract

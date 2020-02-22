@@ -1,4 +1,4 @@
-﻿using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
+﻿using Auth.Web.Contracts.ExceptionContracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using System;

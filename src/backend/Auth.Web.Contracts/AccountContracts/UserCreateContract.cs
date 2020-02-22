@@ -1,4 +1,4 @@
-﻿namespace Auth.Web.Infrastructure.Contracts.AccountContracts
+﻿namespace Auth.Web.Contracts.AccountContracts
 {
     /// <summary> Contract for user creation </summary>
     public class UserCreateContract

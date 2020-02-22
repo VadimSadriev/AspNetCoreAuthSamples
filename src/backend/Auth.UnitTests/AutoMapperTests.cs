@@ -1,6 +1,6 @@
 ﻿using Auth.Application;
 using Auth.Infrastructure;
-using Auth.Web.Infrastructure.Contracts.AccountContracts;
+using Auth.Web.Contracts.AccountContracts;
 using AutoMapper;
 using Xunit;
 

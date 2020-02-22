@@ -1,4 +1,4 @@
-﻿namespace Auth.Web.Infrastructure.Contracts.AccountContracts
+﻿namespace Auth.Web.Contracts.AccountContracts
 {
     /// <summary> Response contract for consumer </summary>
     public class UserResponseContract

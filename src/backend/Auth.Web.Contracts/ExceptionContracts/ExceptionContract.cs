@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Auth.Web.Infrastructure.Contracts.ExceptionContracts
+namespace Auth.Web.Contracts.ExceptionContracts
 {
     /// <summary>
     /// Contract error for consumers in case of any <see cref="Exception"/>

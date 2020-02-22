@@ -1,4 +1,4 @@
-﻿namespace Auth.Web.Infrastructure.Contracts.ExceptionContracts
+﻿namespace Auth.Web.Contracts.ExceptionContracts
 {
     /// <summary> Contract for exception error </summary>
     public class ExceptionErrorContract

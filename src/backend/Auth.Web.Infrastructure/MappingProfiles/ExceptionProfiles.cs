@@ -1,4 +1,4 @@
-﻿using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
+﻿using Auth.Web.Contracts.ExceptionContracts;
 using AutoMapper;
 using System;
 using System.Collections.Generic;

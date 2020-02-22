@@ -1,7 +1,7 @@
 using Auth.Application;
 using Auth.Common.Dtos.Identity;
 using Auth.Infrastructure;
-using Auth.Web.Infrastructure.Contracts.AccountContracts;
+using Auth.Web.Contracts.AccountContracts;
 using Auth.Web.Infrastructure.MIddlewares;
 using Auth.Web.Infrastructure.Swagger;
 using FluentValidation.AspNetCore;

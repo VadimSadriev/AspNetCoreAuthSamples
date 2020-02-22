@@ -1,6 +1,6 @@
 ﻿using Auth.Common.Dtos.Identity;
 using Auth.Domain;
-using Auth.Web.Infrastructure.Contracts.AccountContracts;
+using Auth.Web.Contracts.AccountContracts;
 using AutoMapper;
 
 namespace Auth.Web.Infrastructure.MappingProfiles
