@@ -36,11 +36,9 @@ namespace Auth.Web.Api.Controllers
         {
             var userDto = _mapper.Map<UserCreateDto>(userContract);
 
-            var newUserDto = await _userManager.CreateUser(userDto);
+            var userId = await _userManager.CreateUser(userDto);
 
-            var result = _mapper.Map<UserResponseContract>(newUserDto);
-
-            return Ok(result);
+            return Ok();
         }
 
         /// <summary> Returns jwt auth token for existing user </summary>

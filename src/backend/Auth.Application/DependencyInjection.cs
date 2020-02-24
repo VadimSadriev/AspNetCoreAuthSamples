@@ -5,7 +5,7 @@ using System.Reflection;
 namespace Auth.Application
 {
     /// <summary> Extensions method for application layer </summary>
-    public static class ApplicationExtensions
+    public static class DependencyInjection
     {
         /// <summary> Adds application layer to application </summary>
         public static IServiceCollection AddApplication(this IServiceCollection services)
