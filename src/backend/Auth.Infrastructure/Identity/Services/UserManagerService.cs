@@ -8,6 +8,7 @@ using Auth.Infrastructure.Identity.Data;
 using Auth.Infrastructure.Identity.Exceptions;
 using Auth.Infrastructure.Identity.Extensions;
 using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,18 +22,13 @@ namespace Auth.Infrastructure.Identity.Services
     /// <summary>Provides functionality for user management </summary>
     public class UserManagerService : IUserManager
     {
-        /// <summary> service for managing user </summary>
         public readonly UserManager<AppUser> _userManager;
-
-        /// <summary> provides token generation for user </summary>
         private readonly IJwtAuthService _jwtAuthService;
-
-        /// <summary> Mapper </summary>
         private readonly IMapper _mapper;
-
         private readonly AppDataContext _context;
 
-        /// <summary>Provides functionality for user management </summary>
+
+        /// <summary> Provides functionality for user management </summary>
         public UserManagerService(
             UserManager<AppUser> userManager,
             IJwtAuthService jwtAuthService,

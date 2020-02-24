@@ -1,4 +1,4 @@
-﻿using Auth.Web.Infrastructure.Contracts.AccountContracts;
+﻿using Auth.Web.Contracts.AccountContracts;
 using FluentValidation;
 
 namespace Auth.Web.Infrastructure.ContractValidators.AccountValidators
