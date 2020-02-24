@@ -45,7 +45,7 @@ namespace Auth.Web.Api.Controllers
         [HttpPost("jwt/signin")]
         [ProducesResponseType(typeof(UserJwtResponseContract), StatusCodes.Status200OK)]
         [ProducesErrorResponseType(typeof(ExceptionContract))]
-        public async Task<IActionResult> Signup([FromBody]UserSigninContract userSigninContract)
+        public async Task<IActionResult> Signin([FromBody]UserSigninContract userSigninContract)
         {
             var userSigninDto = _mapper.Map<UserSigninDto>(userSigninContract);
 
