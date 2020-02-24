@@ -1,10 +1,11 @@
 using Auth.Application;
 using Auth.Application.Dtos.Identity;
+using Auth.Contracts.AccountContracts;
 using Auth.Infrastructure;
 using Auth.Infrastructure.Mapping.Profiles;
-using Auth.Web.Contracts.AccountContracts;
+using Auth.Web.Infrastructure.Filters;
 using Auth.Web.Infrastructure.MappingProfiles;
-using Auth.Web.Infrastructure.MIddlewares;
+using Auth.Web.Infrastructure.Middlewares;
 using Auth.Web.Infrastructure.Swagger;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +13,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Auth.Web.Infrastructure.Filters;
 
 namespace Auth.Web.Api
 {
@@ -32,14 +32,14 @@ namespace Auth.Web.Api
             services.AddInfrastructure(Configuration);
             services.AddJwtAuthentication(Configuration);
 
-            var assembliesWithMOdels = new[]
+            var assembliesWithModels = new[]
             {
                 Assembly.GetExecutingAssembly(),
                 typeof(UserResponseDto).Assembly,
                 typeof(UserSigninContract).Assembly
             };
 
-            services.AddSwagger(assembliesWithMOdels);
+            services.AddSwagger(assembliesWithModels);
 
             services.AddCors();
             services.AddControllers(options =>

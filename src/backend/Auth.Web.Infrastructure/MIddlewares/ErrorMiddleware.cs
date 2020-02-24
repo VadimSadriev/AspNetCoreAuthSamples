@@ -1,12 +1,11 @@
-﻿using System;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Auth.Web.Infrastructure.Contracts.ExceptionContracts;
-using Auth.Web.Contracts.ExceptionContracts;
+﻿using Auth.Web.Contracts.ExceptionContracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using System;
+using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace Auth.Web.Infrastructure.MIddlewares
+namespace Auth.Web.Infrastructure.Middlewares
 {
     /// <summary>
     /// Handles all exception occurred during request

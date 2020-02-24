@@ -1,4 +1,4 @@
-﻿namespace Auth.Web.Contracts.AccountContracts
+﻿namespace Auth.Contracts.AccountContracts
 {
     /// <summary> Response contract for jwt authentication </summary>
     public class UserJwtResponseContract

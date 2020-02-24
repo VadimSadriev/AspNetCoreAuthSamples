@@ -1,10 +1,9 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using Auth.Application.Dtos.Identity;
+﻿using Auth.Contracts.AccountContracts;
 using Auth.IntegrationTests.Base;
 using Auth.IntegrationTests.Extensions;
-using Auth.Web.Infrastructure.Contracts.AccountContracts;
 using FluentAssertions;
+using System.Net;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Auth.IntegrationTests

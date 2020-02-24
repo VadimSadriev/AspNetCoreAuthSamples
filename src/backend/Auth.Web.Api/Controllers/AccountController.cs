@@ -1,6 +1,6 @@
 ﻿using Auth.Application.Common.Interfaces.Identity;
 using Auth.Application.Dtos.Identity;
-using Auth.Web.Contracts.AccountContracts;
+using Auth.Contracts.AccountContracts;
 using Auth.Web.Contracts.ExceptionContracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
