@@ -3,6 +3,7 @@ using Auth.Application.Dtos.Identity;
 using Auth.Contracts.AccountContracts;
 using Auth.Infrastructure;
 using Auth.Infrastructure.Mapping.Profiles;
+using Auth.Web.Infrastructure.ContractValidators.AccountValidators;
 using Auth.Web.Infrastructure.Filters;
 using Auth.Web.Infrastructure.MappingProfiles;
 using Auth.Web.Infrastructure.Middlewares;
@@ -35,7 +36,6 @@ namespace Auth.Web.Api
             var assembliesWithModels = new[]
             {
                 Assembly.GetExecutingAssembly(),
-                typeof(UserResponseDto).Assembly,
                 typeof(UserSigninContract).Assembly
             };
 
@@ -48,13 +48,14 @@ namespace Auth.Web.Api
                 })
                 .AddFluentValidation(config =>
                 {
-                    config.RegisterValidatorsFromAssemblyContaining<UserResponseContract>();
+                    config.RegisterValidatorsFromAssemblyContaining<UserCreateContractValidator>();
                     config.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
                 });
 
             var assembliesWithProfiles = new[]
             {
                 typeof(AccountProfiles).Assembly,
+                typeof(UserCreateContract).Assembly,
                 typeof(UserProfile).Assembly
             };
 

@@ -16,10 +16,10 @@ namespace Auth.Web.Infrastructure.ContractValidators.AccountValidators
                 .WithMessage("Please provide UserName in order to signup");
 
             RuleFor(x => x.Email)
-                .NotEmpty()
-                .WithMessage("Email cannot be empty")
-                .NotNull()
-                .WithMessage("Please provide Email in order to signup");
+               .NotEmpty()
+               .WithMessage("Email cannot be empty")
+               .NotNull()
+               .WithMessage("Please provide Email in order to signup");
 
             RuleFor(x => x.Password)
                 .NotEmpty()
