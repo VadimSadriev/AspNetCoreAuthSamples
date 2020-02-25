@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using Auth.Application.Behaviours;
+using AutoMapper;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -10,6 +12,10 @@ namespace Auth.Application
         /// <summary> Adds application layer to application </summary>
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
             return services;
         }
 

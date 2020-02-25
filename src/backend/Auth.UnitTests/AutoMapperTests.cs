@@ -17,8 +17,8 @@ namespace Auth.UnitTests
         {
             var assemblies = new[]
             {
-                typeof(InfrastructureExtensions).Assembly,
-                typeof(DependencyInjection).Assembly,
+                typeof(Infrastructure.DependencyInjection).Assembly,
+                typeof(Application.DependencyInjection).Assembly,
                 typeof(UserResponseContract).Assembly
             };
 

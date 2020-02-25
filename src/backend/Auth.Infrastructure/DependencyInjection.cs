@@ -20,7 +20,7 @@ using System.Text;
 namespace Auth.Infrastructure
 {
     /// <summary> Extensions for infrastructure layer </summary>
-    public static class InfrastructureExtensions
+    public static class DependencyInjection
     {
         /// <summary> Adds infrastructure layer to application </summary>
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
@@ -31,6 +31,8 @@ namespace Auth.Infrastructure
                 options.UseSqlite(configuration["Database:UserStore"]);
                 options.EnableSensitiveDataLogging();
             });
+
+            services.AddScoped<IUserDataContext, AppDataContext>();
 
             var identityConfigurationSection = configuration.GetSection("IdentityOptions");
 
