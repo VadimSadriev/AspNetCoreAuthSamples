@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Identity\Data\Migrations\20200226095415_Init.cs" />
+    <Compile Remove="Identity\Data\Migrations\20200226095415_Init.Designer.cs" />
+    <Compile Remove="Identity\Data\Migrations\20200226095912_Init.cs" />
+    <Compile Remove="Identity\Data\Migrations\20200226095912_Init.Designer.cs" />
+    <Compile Remove="Identity\Data\Migrations\20200226095954_Init.cs" />
+    <Compile Remove="Identity\Data\Migrations\20200226095954_Init.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
@@ -19,10 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Auth.Application\Auth.Application.csproj" />
     <ProjectReference Include="..\Auth.Common\Auth.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Identity\Data\Migrations\" />
   </ItemGroup>
 
 </Project>

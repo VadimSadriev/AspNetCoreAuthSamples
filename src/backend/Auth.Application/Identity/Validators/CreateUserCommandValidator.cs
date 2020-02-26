@@ -2,6 +2,7 @@
 using Auth.Application.Identity.Commands;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Auth.Application.Identity.Validators
 {
@@ -12,11 +13,16 @@ namespace Auth.Application.Identity.Validators
         public CreateUserCommandValidator(IUserDataContext context)
         {
             RuleFor(x => x.UserCreateContract.UserName)
-                .MustAsync(async (prop, val, token) => await context.Users.AnyAsync(x => x.UserName == val))
+                .MustAsync(async (prop, val, token) => !await context.Users.AnyAsync(x => x.UserName == val))
                 .WithMessage(x => $"User with Username: {x.UserCreateContract.UserName} already exists");
 
             RuleFor(x => x.UserCreateContract.Email)
-                .MustAsync(async (prop, val, token) => await context.Users.AnyAsync(x => x.Email == val))
+                .EmailAddress()
+                .WithMessage(x => $"Email: {x.UserCreateContract.Email} is not in correct format")
+                .MustAsync(async (prop, val, token) =>
+                {
+                    return !await context.Users.AnyAsync(x => x.Email == val);
+                })
                 .WithMessage(x => $"User with Email: {x.UserCreateContract.Email} already exists");
         }
     }

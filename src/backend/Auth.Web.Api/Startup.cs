@@ -2,6 +2,7 @@ using Auth.Application;
 using Auth.Application.Dtos.Identity;
 using Auth.Contracts.AccountContracts;
 using Auth.Infrastructure;
+using Auth.Infrastructure.Identity.Data;
 using Auth.Infrastructure.Mapping.Profiles;
 using Auth.Web.Infrastructure.ContractValidators.AccountValidators;
 using Auth.Web.Infrastructure.Filters;
@@ -11,6 +12,7 @@ using Auth.Web.Infrastructure.Swagger;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -63,8 +65,10 @@ namespace Auth.Web.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDataContext context)
         {
+            context.Database.Migrate();
+
             app.UseHsts();
             app.UseHttpsRedirection();
 

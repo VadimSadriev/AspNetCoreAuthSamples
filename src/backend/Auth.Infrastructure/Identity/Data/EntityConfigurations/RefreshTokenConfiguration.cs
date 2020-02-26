@@ -14,6 +14,7 @@ namespace Auth.Infrastructure.Identity.Data.EntityConfigurations
             builder.HasKey(x => x.Token);
 
             builder.Property(x => x.Token)
+                .IsRequired()
                 .HasColumnName("token");
 
             builder.Property(x => x.CreateDate)

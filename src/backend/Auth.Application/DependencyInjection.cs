@@ -1,5 +1,6 @@
 ﻿using Auth.Application.Behaviours;
 using AutoMapper;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -15,6 +16,8 @@ namespace Auth.Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddValidatorsFromAssemblies(new[] { Assembly.GetExecutingAssembly() });
 
             return services;
         }
