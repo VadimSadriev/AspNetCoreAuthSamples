@@ -1,7 +1,9 @@
-﻿using Auth.Web.Contracts.ExceptionContracts;
+﻿using Auth.Application.Exceptions;
+using Auth.Web.Contracts.ExceptionContracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using System;
+using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -35,7 +37,16 @@ namespace Auth.Web.Infrastructure.Middlewares
 
         private async Task HandleAsync(HttpContext httpContext, Exception exception)
         {
-            httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            var code = StatusCodes.Status400BadRequest;
+
+            switch (exception)
+            {
+                case EntityNotFoundException _:
+                    code = StatusCodes.Status404NotFound;
+                    break;
+            }
+
+            httpContext.Response.StatusCode = code;
             httpContext.Response.ContentType = "application/json";
 
             var exceptionContract = _mapper.Map<ExceptionContract>(exception);
