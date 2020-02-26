@@ -9,7 +9,7 @@ namespace Auth.Web.Api
 {
     public class Program
     {
-        public async Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
