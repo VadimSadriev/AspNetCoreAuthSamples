@@ -28,7 +28,7 @@ namespace Auth.Infrastructure
             // register user database
             services.AddDbContext<AppDataContext>(options =>
             {
-                options.UseSqlite(configuration["Database:UserStore"]);
+                options.UseSqlServer(configuration["Database:UserStore"]);
                 options.EnableSensitiveDataLogging();
             });
 
