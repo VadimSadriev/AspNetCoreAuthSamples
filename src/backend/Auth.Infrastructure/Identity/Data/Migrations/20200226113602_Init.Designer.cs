@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Auth.Infrastructure.Identity.Data.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20200226100121_Init")]
+    [Migration("20200226113602_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,6 +91,7 @@ namespace Auth.Infrastructure.Identity.Data.Migrations
             modelBuilder.Entity("Auth.Domain.RefreshToken", b =>
                 {
                     b.Property<string>("Token")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("token")
                         .HasColumnType("nvarchar(450)");
 

@@ -89,6 +89,7 @@ namespace Auth.Infrastructure.Identity.Data.Migrations
             modelBuilder.Entity("Auth.Domain.RefreshToken", b =>
                 {
                     b.Property<string>("Token")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("token")
                         .HasColumnType("nvarchar(450)");
 

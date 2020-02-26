@@ -13,6 +13,7 @@ namespace Auth.Web.Infrastructure.MappingProfiles
             CreateMap<UserCreateContract, UserCreateDto>();
             CreateMap<UserSigninContract, UserSigninDto>();
             CreateMap<UserJwtResponseDto, UserJwtResponseContract>();
+            CreateMap<RefreshJwtTokenContract, RefreshJwtTokenDto>();
         }
     }
 }
