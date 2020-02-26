@@ -29,12 +29,6 @@ namespace Auth.IntegrationTests
 
             // assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            response.Content.Should().NotBeNull();
-
-            var responseContent = await response.Content.ReadAsAsync<UserResponseContract>();
-
-            responseContent.Email.Should().Be(userCreateContract.Email);
-            responseContent.UserName.Should().Be(userCreateContract.UserName);
         }
 
         [Fact]
