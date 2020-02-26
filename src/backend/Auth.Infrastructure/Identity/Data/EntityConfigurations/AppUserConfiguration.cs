@@ -12,7 +12,11 @@ namespace Auth.Infrastructure.Identity.Data.EntityConfigurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
+                .HasColumnName("id")
+                .IsRequired()
                 .ValueGeneratedOnAdd();
+
+            builder.ToTable("users");
         }
     }
 }

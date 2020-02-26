@@ -43,7 +43,7 @@ namespace Auth.Infrastructure.Identity.Services
         }
 
         /// <summary> Creates new user  </summary>
-        public async Task<AppUser> CreateUser(UserCreateDto userDto)
+        public async Task<string> CreateUser(UserCreateDto userDto)
         {
             var user = new AppUser
             {
@@ -54,7 +54,7 @@ namespace Auth.Infrastructure.Identity.Services
             var result = await _userManager.CreateAsync(user, userDto.Password);
 
             if (result.Succeeded)
-                return await GetById(user.Id);
+                return user.Id;
 
             throw new AppException(result.Errors.AggregateErrors());
         }

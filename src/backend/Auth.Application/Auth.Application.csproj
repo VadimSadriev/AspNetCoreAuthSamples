@@ -9,10 +9,17 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="8.6.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.2" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2"></PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2"></PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Auth.Common\Auth.Common.csproj" />
+    <ProjectReference Include="..\Auth.Contracts\Auth.Contracts.csproj" />
     <ProjectReference Include="..\Auth.Domain\Auth.Domain.csproj" />
   </ItemGroup>
 

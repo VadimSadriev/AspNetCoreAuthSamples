@@ -1,4 +1,4 @@
-﻿using Auth.Web.Contracts.AccountContracts;
+﻿using Auth.Contracts.AccountContracts;
 using FluentValidation;
 
 namespace Auth.Web.Infrastructure.ContractValidators.AccountValidators
@@ -16,10 +16,10 @@ namespace Auth.Web.Infrastructure.ContractValidators.AccountValidators
                 .WithMessage("Please provide UserName in order to signup");
 
             RuleFor(x => x.Email)
-                .NotEmpty()
-                .WithMessage("Email cannot be empty")
-                .NotNull()
-                .WithMessage("Please provide Email in order to signup");
+               .NotEmpty()
+               .WithMessage("Email cannot be empty")
+               .NotNull()
+               .WithMessage("Please provide Email in order to signup");
 
             RuleFor(x => x.Password)
                 .NotEmpty()

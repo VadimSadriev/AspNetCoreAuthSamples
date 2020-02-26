@@ -1,10 +1,9 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using Auth.Application.Dtos.Identity;
+﻿using Auth.Contracts.AccountContracts;
 using Auth.IntegrationTests.Base;
 using Auth.IntegrationTests.Extensions;
-using Auth.Web.Infrastructure.Contracts.AccountContracts;
 using FluentAssertions;
+using System.Net;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Auth.IntegrationTests
@@ -30,12 +29,6 @@ namespace Auth.IntegrationTests
 
             // assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            response.Content.Should().NotBeNull();
-
-            var responseContent = await response.Content.ReadAsAsync<UserResponseContract>();
-
-            responseContent.Email.Should().Be(userCreateContract.Email);
-            responseContent.UserName.Should().Be(userCreateContract.UserName);
         }
 
         [Fact]

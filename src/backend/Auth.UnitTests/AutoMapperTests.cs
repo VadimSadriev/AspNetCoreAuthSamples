@@ -1,6 +1,6 @@
 ﻿using Auth.Application;
+using Auth.Contracts.AccountContracts;
 using Auth.Infrastructure;
-using Auth.Web.Contracts.AccountContracts;
 using AutoMapper;
 using Xunit;
 
@@ -17,8 +17,8 @@ namespace Auth.UnitTests
         {
             var assemblies = new[]
             {
-                typeof(InfrastructureExtensions).Assembly,
-                typeof(ApplicationExtensions).Assembly,
+                typeof(Infrastructure.DependencyInjection).Assembly,
+                typeof(Application.DependencyInjection).Assembly,
                 typeof(UserResponseContract).Assembly
             };
 

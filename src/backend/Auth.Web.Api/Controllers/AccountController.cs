@@ -1,8 +1,7 @@
-﻿using Auth.Application.Common.Interfaces.Identity;
-using Auth.Application.Dtos.Identity;
-using Auth.Web.Contracts.AccountContracts;
+﻿using Auth.Application.Identity.Commands;
+using Auth.Contracts.AccountContracts;
 using Auth.Web.Contracts.ExceptionContracts;
-using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -13,19 +12,12 @@ namespace Auth.Web.Api.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        /// <summary> service for user management </summary>
-        private readonly IUserManager _userManager;
-
-        /// <summary> mapper </summary>
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
         /// <summary> Main api for account management </summary>
-        public AccountController(
-            IUserManager userManager,
-            IMapper mapper)
+        public AccountController(IMediator mediator)
         {
-            _userManager = userManager;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
         /// <summary>Creates new user </summary>
@@ -34,28 +26,24 @@ namespace Auth.Web.Api.Controllers
         [ProducesErrorResponseType(typeof(ExceptionContract))]
         public async Task<IActionResult> Signup([FromBody]UserCreateContract userContract)
         {
-            var userDto = _mapper.Map<UserCreateDto>(userContract);
+            var command = new CreateUserCommand(userContract);
 
-            var newUserDto = await _userManager.CreateUser(userDto);
+            await _mediator.Send(command);
 
-            var result = _mapper.Map<UserResponseContract>(newUserDto);
-
-            return Ok(result);
+            return Ok();
         }
 
         /// <summary> Returns jwt auth token for existing user </summary>
         [HttpPost("jwt/signin")]
         [ProducesResponseType(typeof(UserJwtResponseContract), StatusCodes.Status200OK)]
         [ProducesErrorResponseType(typeof(ExceptionContract))]
-        public async Task<IActionResult> Signup([FromBody]UserSigninContract userSigninContract)
+        public async Task<IActionResult> Signin([FromBody]UserSigninContract userSigninContract)
         {
-            var userSigninDto = _mapper.Map<UserSigninDto>(userSigninContract);
+            var command = new SigninWithJwtCommand(userSigninContract);
 
-            var userResponseDto = await _userManager.SigninWithJwt(userSigninDto);
+            var result = await _mediator.Send(command);
 
-            var responseContract = _mapper.Map<UserJwtResponseContract>(userResponseDto);
-
-            return Ok(responseContract);
+            return Ok(result);
         }
 
         /// <summary> Refreshes jwt token with refresh token and returns new combination </summary>
@@ -64,13 +52,11 @@ namespace Auth.Web.Api.Controllers
         [ProducesErrorResponseType(typeof(ExceptionContract))]
         public async Task<IActionResult> RefreshJwtToken([FromBody]RefreshJwtTokenContract refreshTokenContract)
         {
-            var refreshTokenDto = _mapper.Map<RefreshJwtTokenDto>(refreshTokenContract);
+            var command = new RefreshJwtTokenCommand(refreshTokenContract);
 
-            var jwtTokenDto = await _userManager.RefreshJwtToken(refreshTokenDto);
+            var result = await _mediator.Send(command);
 
-            var responseContract = _mapper.Map<UserJwtResponseContract>(jwtTokenDto);
-
-            return Ok(responseContract);
+            return Ok(result);
         }
     }
 }

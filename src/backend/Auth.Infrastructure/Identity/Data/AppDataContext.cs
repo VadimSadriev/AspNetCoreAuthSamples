@@ -1,4 +1,5 @@
-﻿using Auth.Domain;
+﻿using Auth.Application.Common.Interfaces.Identity;
+using Auth.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using System.Reflection;
 namespace Auth.Infrastructure.Identity.Data
 {
     /// <summary> Main context for application users </summary>
-    public class AppDataContext : IdentityDbContext<AppUser, IdentityRole, string>
+    public class AppDataContext : IdentityDbContext<AppUser, IdentityRole, string>, IUserDataContext
     {
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
@@ -16,9 +17,9 @@ namespace Auth.Infrastructure.Identity.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
             base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

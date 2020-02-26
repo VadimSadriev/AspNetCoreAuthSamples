@@ -8,7 +8,7 @@ namespace Auth.Application.Common.Interfaces.Identity
     public interface IUserManager
     {
         /// <summary> Creates new user  </summary>
-        Task<AppUser> CreateUser(UserCreateDto userDto);
+        Task<string> CreateUser(UserCreateDto userDto);
 
         /// <summary> Checks user existens and return jwt auth token </summary>
         Task<UserJwtResponseDto> SigninWithJwt(UserSigninDto userSigninDto);

@@ -1,6 +1,6 @@
 ﻿using Auth.Application.Dtos.Identity;
+using Auth.Contracts.AccountContracts;
 using Auth.Domain;
-using Auth.Web.Contracts.AccountContracts;
 using AutoMapper;
 
 namespace Auth.Web.Infrastructure.MappingProfiles
@@ -13,6 +13,7 @@ namespace Auth.Web.Infrastructure.MappingProfiles
             CreateMap<UserCreateContract, UserCreateDto>();
             CreateMap<UserSigninContract, UserSigninDto>();
             CreateMap<UserJwtResponseDto, UserJwtResponseContract>();
+            CreateMap<RefreshJwtTokenContract, RefreshJwtTokenDto>();
         }
     }
 }
