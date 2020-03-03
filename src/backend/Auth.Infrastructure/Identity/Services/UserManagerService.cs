@@ -22,7 +22,7 @@ namespace Auth.Infrastructure.Identity.Services
     /// <summary>Provides functionality for user management </summary>
     public class UserManagerService : IUserManager
     {
-        public readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IJwtAuthService _jwtAuthService;
         private readonly IMapper _mapper;
         private readonly AppDataContext _context;
@@ -56,7 +56,7 @@ namespace Auth.Infrastructure.Identity.Services
             if (result.Succeeded)
                 return user.Id;
 
-            throw new AppException(result.Errors.AggregateErrors());
+            throw new IdentityException(result.Errors);
         }
 
         /// <summary> Checks user existens and return jwt auth token </summary>

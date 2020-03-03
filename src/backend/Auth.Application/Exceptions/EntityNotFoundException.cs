@@ -6,9 +6,18 @@ namespace Auth.Application.Exceptions
     public class EntityNotFoundException : AppException
     {
         /// <summary> Exception throw when entity not found </summary>
-        public EntityNotFoundException(string message) : base(message) { }
+        public EntityNotFoundException()
+        {
+        }
 
         /// <summary> Exception throw when entity not found </summary>
-        public EntityNotFoundException(string message, Exception innerException) : base(message, innerException) { }
+        public EntityNotFoundException(string message) : base(message)
+        {
+        }
+
+        /// <summary> Exception throw when entity not found </summary>
+        public EntityNotFoundException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

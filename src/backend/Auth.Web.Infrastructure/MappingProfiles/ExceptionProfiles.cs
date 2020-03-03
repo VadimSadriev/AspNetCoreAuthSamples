@@ -4,6 +4,8 @@ using FluentValidation;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using Auth.Infrastructure.Identity.Exceptions;
+using Microsoft.AspNetCore.Identity;
 
 namespace Auth.Web.Infrastructure.MappingProfiles
 {
@@ -28,6 +30,14 @@ namespace Auth.Web.Infrastructure.MappingProfiles
                     x => x.MapFrom(x => x.GetType().Name))
                 .ForMember(x => x.Message,
                     x => x.MapFrom(x => x.ErrorMessage));
+
+            CreateMap<IdentityException, ExceptionContract>();
+
+            CreateMap<IdentityError, ExceptionErrorContract>()
+                .ForMember(x => x.Type,
+                    x => x.MapFrom(x => x.GetType().Name))
+                .ForMember(x => x.Message,
+                    x => x.MapFrom(d => d.Description));
         }
 
         private IEnumerable<ExceptionErrorContract> MapError(Exception ex)
