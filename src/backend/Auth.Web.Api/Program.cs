@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Auth.Web.Api
@@ -27,6 +28,10 @@ namespace Auth.Web.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseKestrel(options =>
+                    {
+                        options.Listen(IPAddress.Loopback, 5010);
+                    });
                     webBuilder.UseStartup<Startup>();
                 });
     }
