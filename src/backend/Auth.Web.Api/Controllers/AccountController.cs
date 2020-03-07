@@ -1,4 +1,5 @@
 ﻿using Auth.Application.Identity.Commands;
+using Auth.Application.Identity.Queries;
 using Auth.Contracts.AccountContracts;
 using Auth.Web.Contracts.ExceptionContracts;
 using MediatR;
@@ -22,7 +23,6 @@ namespace Auth.Web.Api.Controllers
 
         /// <summary>Creates new user </summary>
         [HttpPost("signup")]
-        [ProducesResponseType(typeof(UserResponseContract), StatusCodes.Status200OK)]
         [ProducesErrorResponseType(typeof(ExceptionContract))]
         public async Task<IActionResult> Signup([FromBody]UserCreateContract userContract)
         {
@@ -55,6 +55,20 @@ namespace Auth.Web.Api.Controllers
             var command = new RefreshJwtTokenCommand(refreshTokenContract);
 
             var result = await _mediator.Send(command);
+
+            return Ok(result);
+        }
+
+        /// <summary> Returns current user's info </summary>
+        /// <returns></returns>
+        [HttpGet("account-info")]
+        [ProducesResponseType(typeof(UserResponseContract), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionContract))]
+        public async Task<IActionResult> GetAccountInfo()
+        {
+            var query = new GetCurrentUserQuery();
+
+            var result = await _mediator.Send(query);
 
             return Ok(result);
         }
