@@ -43,3 +43,12 @@ html{
 .MuiSnackbar-root{
     white-space: pre;
 }
+
+.MuiSnackbarContent-message{
+    white-space: pre-line;
+    max-width: 400px;
+}
+
+.MuiSnackbarContent-action{
+    padding-left: 0px !important;
+}

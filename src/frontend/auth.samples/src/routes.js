@@ -8,8 +8,8 @@ export default class Routers extends React.Component {
     render() {
         return (
             <Switch>
-                <Route exact path='/' component={Home}></Route>
-                <Route path='/signup' component={SignUp}></Route>
+                <Route exact path='/' render={() => <Home title="Auth Samples - Home" />}/>
+                <Route path='/signup' render={() => <SignUp title="Auth Samples - Signup" />} />
             </Switch>
         );
     }

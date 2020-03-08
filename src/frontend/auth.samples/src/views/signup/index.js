@@ -21,6 +21,10 @@ class Signup extends React.Component {
         apiMessage: null
     }
 
+    componentDidMount(){
+        document.title = this.props.title;
+    }
+
     static getDerivedStateFromProps(props, state) {
         return {
             apiMessage: props.apiMessage

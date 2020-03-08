@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default axios.create({
+export const http = axios.create({
     method: 'GET',
     baseURL: `${process.env.REACT_APP_API_URL}`,
     headers: {
@@ -8,3 +8,7 @@ export default axios.create({
         'Accept': 'application/json'
     },
 })
+
+export const errorMessages = {
+    network: "Unknown error occured during your request."
+}
