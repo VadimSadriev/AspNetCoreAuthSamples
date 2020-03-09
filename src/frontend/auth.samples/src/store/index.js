@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import signupReducer from './reducers/signup';
+import singinReducer from './reducers/signin';
 import layoutBackdropReducer from './reducers/layoutBackdrop';
 import layoutSnackbarReducer from './reducers/layoutSnackbar';
 import { connectRouter, routerMiddleware } from 'connected-react-router'
@@ -8,6 +9,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 export default function configureStore(history, initialState) {
   const reducers = {
     signup: signupReducer,
+    signin: singinReducer,
     layoutBackdrop: layoutBackdropReducer,
     layoutSnackbar: layoutSnackbarReducer
   };

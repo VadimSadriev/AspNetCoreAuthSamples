@@ -3,31 +3,31 @@ import { push } from 'connected-react-router';
 import * as layoutBackdropActions from './layoutBackdrop';
 import * as layoutSnackbarActions from './layoutSnackbar';
 
-const signupStart = () => {
+const signinStart = () => {
     return {
-        type: "SIGNUP_START"
+        type: "SIGNIN_START"
     }
 }
 
-const signupSuccess = () => {
+const signinSuccess = () => {
     return {
-        type: "SIGNUP_SUCCESS"
+        type: "SIGNIN_SUCCESS"
     }
 }
 
-const signupFail = () => {
+const signinFail = () => {
     return {
-        type: "SIGNUP_FAIL"
+        type: "SIGNIN_FAIL"
     }
 }
 
-export const signup = (userName, email, password) => {
+export const signin = (userName, email, password) => {
     return dispatch => {
-        dispatch(signupStart());
+        dispatch(signinStart());
         dispatch(layoutBackdropActions.open());
 
         http({
-            url: 'api/account/signup',
+            url: 'api/account/signin',
             method: 'POST',
             data: {
                 userName: userName,
@@ -37,12 +37,10 @@ export const signup = (userName, email, password) => {
         })
             .then(res => {
                 dispatch(layoutBackdropActions.close())
-                dispatch(signupSuccess());
-                dispatch(layoutSnackbarActions.enqueueSnackbarSuccess('Account has been created successfully'));
-                dispatch(push('/signin'));
+                dispatch(signinSuccess());
+                dispatch(push('/'));
             })
             .catch(res => {
-                console.log(res)
                 dispatch(layoutBackdropActions.close())
                 if (res.response && res.response.data && res.response.data.errors){
                     res.response.data.errors.forEach(error => dispatch(layoutSnackbarActions.enqueueSnackbarError(error.message)))
@@ -50,7 +48,7 @@ export const signup = (userName, email, password) => {
                 else{
                    dispatch(layoutSnackbarActions.enqueueSnackbarError(errorMessages.network));
                 }
-                dispatch(signupFail());
+                dispatch(signinFail());
             });
     }
 }
