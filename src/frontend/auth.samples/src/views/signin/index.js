@@ -17,24 +17,21 @@ function Signin(props){
         document.title = props.title;
     })
 
-    const [userName, setUserName] = useState('');
-
-    const [email, setEmail] = useState('');
+    const [userNameOrEmail, setUserNameOrEmail] = useState('');
 
     const [password, setPassword] = useState('');
 
     const onSignin = (e) => {
-        props.signin(userName, email, password);
+        props.signin(userNameOrEmail, password);
     }
     
     return (
         <React.Fragment>
                 <Container maxWidth='sm'>
                     <Card>
-                        <CardHeader className='card-header' title='Signin with user name or email' />
+                        <CardHeader className='card-header' title='Signin with UserName or Email' />
                         <CardContent className='card-content'>
-                            <TextField label='User Name' onChange={e => setUserName(e.target.value)}/>
-                            <TextField label='Email' onChange={e => setEmail(e.target.value)}/>
+                            <TextField label='UserName or Email' onChange={e => setUserNameOrEmail(e.target.value)}/>
                             <TextField label='Password' type='password' onChange={e => setPassword(e.target.value)}/>
                         </CardContent>
                         <CardActions className='card-footer'>
@@ -48,8 +45,8 @@ function Signin(props){
 
 const mapDispatchToProps = dispatch => {
     return {
-        signin: (userName, email, password) => {
-            dispatch(actions.signin(userName, email, password));
+        signin: (userNameOrEmail, password) => {
+            dispatch(actions.signin(userNameOrEmail, password));
         }
     }
 }

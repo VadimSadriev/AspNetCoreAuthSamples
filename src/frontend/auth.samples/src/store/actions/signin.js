@@ -25,23 +25,22 @@ const signinFail = () => {
     }
 }
 
-export const signin = (userName, email, password) => {
+export const signin = (userNameOrEmail, password) => {
     return dispatch => {
         dispatch(signinStart());
         dispatch(layoutBackdropActions.open());
 
         http({
-            url: 'api/account/signin',
+            url: 'api/account/jwt/signin',
             method: 'POST',
             data: {
-                userName: userName,
-                email: email,
+                userNameOrEmail: userNameOrEmail,
                 password: password
             }
         })
             .then(res => {
                 dispatch(layoutBackdropActions.close());
-                const { token, refreshToken } = res;
+                const { token, refreshToken } = res.data;
                 dispatch(signinSuccess(token, refreshToken));
                 dispatch(push('/'));
             })
