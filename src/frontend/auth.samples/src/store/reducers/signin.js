@@ -1,23 +1,33 @@
 
 const initialState = {
-    isLoading: false
+    isLoading: false,
+    token: null,
+    refreshToken: null
 }
 
 const signinReducer = (state=initialState, action) => {
     switch(action.type){
-        case "SIGIN_START": {
+        case "SIGNIN_START": {
             return {
                 ...state,
                 isLoading: true
             };
         }
-        case "SIGIN_SUCCESS": {
+        case "SIGNIN_SUCCESS": {
+
+            const { token, refreshToken} = action.payload;
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('refreshToken', refreshToken);
+
             return {
                 ...state,
-                isLoading: false
+                isLoading: false,
+                token: token,
+                refreshToken: refreshToken
             };
         }
-        case "SIGIN_FAIL": {
+        case "SIGNIN_FAIL": {
             return {
                 ...state,
                 isLoading: false

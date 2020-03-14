@@ -15,7 +15,7 @@ import './style.scss';
 class Signup extends React.Component {
 
     state = {
-        userName: '123',
+        userName: '',
         email: '',
         password: '',
         apiMessage: null

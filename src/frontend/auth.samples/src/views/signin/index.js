@@ -33,9 +33,9 @@ function Signin(props){
                     <Card>
                         <CardHeader className='card-header' title='Signin with user name or email' />
                         <CardContent className='card-content'>
-                            <TextField label='User Name' />
-                            <TextField label='Email' />
-                            <TextField label='Password' type='password' />
+                            <TextField label='User Name' onChange={e => setUserName(e.target.value)}/>
+                            <TextField label='Email' onChange={e => setEmail(e.target.value)}/>
+                            <TextField label='Password' type='password' onChange={e => setPassword(e.target.value)}/>
                         </CardContent>
                         <CardActions className='card-footer'>
                             <Button variant="contained" color="primary" onClick={onSignin}>Signin</Button>

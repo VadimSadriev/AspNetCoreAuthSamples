@@ -9,9 +9,13 @@ const signinStart = () => {
     }
 }
 
-const signinSuccess = () => {
+const signinSuccess = (token, refreshToken) => {
     return {
-        type: "SIGNIN_SUCCESS"
+        type: "SIGNIN_SUCCESS",
+        payload: {
+            token,
+            refreshToken
+        }
     }
 }
 
@@ -36,17 +40,18 @@ export const signin = (userName, email, password) => {
             }
         })
             .then(res => {
-                dispatch(layoutBackdropActions.close())
-                dispatch(signinSuccess());
+                dispatch(layoutBackdropActions.close());
+                const { token, refreshToken } = res;
+                dispatch(signinSuccess(token, refreshToken));
                 dispatch(push('/'));
             })
             .catch(res => {
                 dispatch(layoutBackdropActions.close())
-                if (res.response && res.response.data && res.response.data.errors){
+                if (res.response && res.response.data && res.response.data.errors) {
                     res.response.data.errors.forEach(error => dispatch(layoutSnackbarActions.enqueueSnackbarError(error.message)))
                 }
-                else{
-                   dispatch(layoutSnackbarActions.enqueueSnackbarError(errorMessages.network));
+                else {
+                    dispatch(layoutSnackbarActions.enqueueSnackbarError(errorMessages.network));
                 }
                 dispatch(signinFail());
             });
