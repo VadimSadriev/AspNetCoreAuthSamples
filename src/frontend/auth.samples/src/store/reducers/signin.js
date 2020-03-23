@@ -1,8 +1,6 @@
 
 const initialState = {
-    isLoading: false,
-    token: null,
-    refreshToken: null
+    isLoading: false
 }
 
 const signinReducer = (state=initialState, action) => {
@@ -22,9 +20,7 @@ const signinReducer = (state=initialState, action) => {
 
             return {
                 ...state,
-                isLoading: false,
-                token: token,
-                refreshToken: refreshToken
+                isLoading: false
             };
         }
         case "SIGNIN_FAIL": {
