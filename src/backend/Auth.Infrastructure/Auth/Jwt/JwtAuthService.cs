@@ -70,7 +70,7 @@ namespace Auth.Infrastructure.Auth.Jwt
                 claims: claims,
                 signingCredentials: credentials,
                 expires: _timeService.Now.DateTime.AddMinutes(_jwtOptions.Expires)
-                );
+            );
 
             var refreshToken = new RefreshToken
             {
@@ -108,14 +108,29 @@ namespace Auth.Infrastructure.Auth.Jwt
             {
                 var principal = tokenHandler.ValidateToken(token, _tokenValidationParameters, out var validatedToken);
 
-                if (!IsValidJwtAlghoritm(validatedToken))
-                    return null;
-
-                return principal;
+                return !IsValidJwtAlghoritm(validatedToken) ? null : principal;
             }
             catch
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if jwt is valid
+        /// </summary>
+        public bool IsTokenValid(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            try
+            {
+                tokenHandler.ValidateToken(token, _tokenValidationParameters, out var validatedToken);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -125,8 +140,8 @@ namespace Auth.Infrastructure.Auth.Jwt
         private bool IsValidJwtAlghoritm(SecurityToken validatedToken)
         {
             return (validatedToken is JwtSecurityToken jwtSecurityToken)
-                && jwtSecurityToken.Header.Alg
-                .Equals(SecurityAlgorithms.HmacSha256, System.StringComparison.InvariantCultureIgnoreCase);
+                   && jwtSecurityToken.Header.Alg
+                       .Equals(SecurityAlgorithms.HmacSha256, System.StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

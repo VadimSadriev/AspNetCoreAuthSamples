@@ -34,6 +34,7 @@ namespace Auth.Web.Api
             services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddJwtAuthentication(Configuration);
+            services.AddHttpContextAccessor();
 
             var assembliesWithModels = new[]
             {

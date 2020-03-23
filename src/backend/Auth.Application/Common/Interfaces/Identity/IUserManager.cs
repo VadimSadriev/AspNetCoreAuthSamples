@@ -18,5 +18,8 @@ namespace Auth.Application.Common.Interfaces.Identity
 
         /// <summary> Returns user by id </summary>
         Task<AppUser> GetById(string id);
+
+        /// <summary> Check if jwt is valid </summary>
+        Task<bool> IsJwtValid(string token);
     }
 }

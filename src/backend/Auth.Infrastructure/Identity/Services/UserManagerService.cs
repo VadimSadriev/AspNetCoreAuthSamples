@@ -88,6 +88,12 @@ namespace Auth.Infrastructure.Identity.Services
                 throw new EntityNotFoundException($"User with identifier {id} not found");
         }
 
+        /// <summary> Check if jwt is valid </summary>
+        public Task<bool> IsJwtValid(string token)
+        {
+            return Task.FromResult(_jwtAuthService.IsTokenValid(token));
+        }
+
         /// <summary> Refreshes jwt token</summary>
         public async Task<UserJwtResponseDto> RefreshJwtToken(RefreshJwtTokenDto refreshJwtTokenDto)
         {

@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Auth.Web.Api.Controllers
 {
@@ -57,6 +58,17 @@ namespace Auth.Web.Api.Controllers
             var result = await _mediator.Send(command);
 
             return Ok(result);
+        }
+
+        /// <summary> Check if user with passed token is authenticated </summary>
+        [HttpGet]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesErrorResponseType(typeof(ExceptionContract))]
+        public async Task<IActionResult> IsAuthenticated()
+        {
+            var isTokenValid = await _mediator.Send(new IsTokenValidCommand());
+
+            return Ok(isTokenValid);
         }
     }
 }

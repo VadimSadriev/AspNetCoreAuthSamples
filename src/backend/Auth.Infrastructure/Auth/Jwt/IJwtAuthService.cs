@@ -13,5 +13,8 @@ namespace Auth.Infrastructure.Auth.Jwt
 
         /// <summary>Returns claims principle from jwt token</summary>
         public ClaimsPrincipal GetPrincipleFromToken(string token);
+
+        /// <summary> Check if token if valid </summary>
+        bool IsTokenValid(string token);
     }
 }
