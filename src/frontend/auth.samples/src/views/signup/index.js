@@ -15,10 +15,14 @@ import './style.scss';
 class Signup extends React.Component {
 
     state = {
-        userName: '123',
+        userName: '',
         email: '',
         password: '',
         apiMessage: null
+    }
+
+    componentDidMount(){
+        document.title = this.props.title;
     }
 
     static getDerivedStateFromProps(props, state) {
@@ -62,7 +66,7 @@ class Signup extends React.Component {
                         <CardHeader className='card-header' title='Register account' />
                         <CardContent className='card-content'>
                             <TextField label='User Name' color='secondary' onChange={this.onUserNameChanged} />
-                            <TextField label='Email' color='secondary' onChange={this.onEmailChanged} />
+                            <TextField label='Email'  onChange={this.onEmailChanged} />
                             <TextField label='Password' type='password' color='secondary' onChange={this.onPasswordChanged} />
                         </CardContent>
                         <CardActions className='card-footer'>

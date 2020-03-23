@@ -1,4 +1,4 @@
-import http from '../../shared/utils/http';
+import { http, errorMessages } from '../../shared/utils/http';
 import { push } from 'connected-react-router';
 import * as layoutBackdropActions from './layoutBackdrop';
 import * as layoutSnackbarActions from './layoutSnackbar';
@@ -39,12 +39,17 @@ export const signup = (userName, email, password) => {
                 dispatch(layoutBackdropActions.close())
                 dispatch(signupSuccess());
                 dispatch(layoutSnackbarActions.enqueueSnackbarSuccess('Account has been created successfully'));
-                dispatch(push('/'));
+                dispatch(push('/signin'));
             })
             .catch(res => {
-                console.log(res.response)
+                console.log(res)
                 dispatch(layoutBackdropActions.close())
-                res.response.data.errors.forEach(error => dispatch(layoutSnackbarActions.enqueueSnackbarError(error.message)))
+                if (res.response && res.response.data && res.response.data.errors){
+                    res.response.data.errors.forEach(error => dispatch(layoutSnackbarActions.enqueueSnackbarError(error.message)))
+                }
+                else{
+                   dispatch(layoutSnackbarActions.enqueueSnackbarError(errorMessages.network));
+                }
                 dispatch(signupFail());
             });
     }

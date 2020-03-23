@@ -33,6 +33,7 @@ namespace Auth.Web.Api
         {
             services.AddApplication();
             services.AddInfrastructure(Configuration);
+            services.AddHttpContextAccessor();
             services.AddJwtAuthentication(Configuration);
             services.AddHttpContextAccessor();
 
